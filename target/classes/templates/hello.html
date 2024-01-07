@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#712cf9">
+    <title>User Log Table</title>
+
+    <!-- Подключение библиотеки Bootstrap -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+    <style>
+        body {
+            background-color: #f8f9fa;
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+        }
+
+        header {
+            background-color: #fff;
+            border-bottom: 1px solid #dee2e6;
+            padding: 1rem;
+            text-align: center;
+        }
+
+        .navbar-brand {
+            font-weight: bold;
+        }
+
+        .nav-masthead {
+            display: flex;
+            justify-content: flex-end;
+            padding: 10px;
+        }
+
+        .nav-masthead .nav-link {
+            padding: 1rem;
+            font-weight: bold;
+            text-decoration: none;
+            color: #000;
+            margin: 0 1rem;
+        }
+
+        .nav-masthead .nav-link.active {
+            color: #007bff;
+        }
+
+        main {
+            padding: 1rem;
+            text-align: center;
+            max-width: 1000px;
+            margin: auto;
+            overflow-x: auto;
+        }
+
+        .filter-form {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        table {
+            width: 100%;
+            max-width: 100%;
+            margin: auto;
+            border-collapse: collapse;
+            background-color: #fff;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            overflow-y: auto;
+        }
+
+        th, td {
+            border: 1px solid #dee2e6;
+            padding: 0.75rem;
+        }
+
+        th {
+            background-color: #712cf9;
+            color: #fff;
+        }
+
+        table tbody tr:hover td {
+            background-color: #e3e3e3;
+        }
+
+        td {
+            background-color: #f8f9fa;
+        }
+
+        h2 {
+            text-align: center;
+        }
+
+        footer {
+            bottom: 0;
+            margin-top: 10px;
+            width: 100%;
+            text-align: center;
+            background-color: #f8f9fa;
+            border-top: 1px solid #dee2e6;
+        }
+    </style>
+</head>
+
+<body>
+<header>
+    <nav class="nav nav-masthead">
+        <a class="navbar-brand" href="#"></a>
+        <a class="nav-link" href="/">Home</a>
+        <a class="nav-link" th:href="@{/hello}">Log In</a>
+    </nav>
+
+</header>
+<h2>Ban Table</h2>
+<main>
+    <table class="table table-bordered table-hover">
+        <thead class="thead-dark">
+        <tr>
+            <th>ID</th>
+            <th>Username</th>
+            <th>Type</th>
+            <th>Text</th>
+            <th>Amount</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="row : ${data}">
+            <td th:text="${row.id}"></td>
+            <td th:text="${row.username}"></td>
+            <td th:text="${row.type}"></td>
+            <td th:text="${row.text}"></td>
+            <td th:text="${row.amount}"></td>
+        </tr>
+        </tbody>
+    </table>
+</main>
+
+<footer>
+    <br>
+    <p class="text-dark">User Log Table template</p>
+</footer>
+
+<!-- Подключение библиотеки Bootstrap JS (необходимо для работы некоторых компонентов) -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+
+</body>
+</html>

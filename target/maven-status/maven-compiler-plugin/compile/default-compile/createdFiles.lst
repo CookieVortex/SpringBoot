@@ -1,0 +1,6 @@
+com\example\springboot\MvcConfig.class
+com\example\springboot\Application.class
+com\example\springboot\entity\UserLog.class
+com\example\springboot\UserLogRepository.class
+com\example\springboot\UserLogController.class
+com\example\springboot\WebSecurityConfig.class
