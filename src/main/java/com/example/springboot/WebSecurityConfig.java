@@ -23,6 +23,7 @@ public class WebSecurityConfig {
                 )
                 .formLogin((form) -> form
                         .loginPage("/login")
+                        .loginProcessingUrl("/login")
                         .permitAll()
                 )
                 .logout((logout) -> logout.permitAll());
@@ -34,9 +35,9 @@ public class WebSecurityConfig {
     public UserDetailsService userDetailsService() {
         UserDetails user =
                 User.withDefaultPasswordEncoder()
-                        .username("user")
-                        .password("password")
-                        .roles("USER")
+                        .username("admin")
+                        .password("admin")
+                        .roles("ADMIN")
                         .build();
 
         return new InMemoryUserDetailsManager(user);
