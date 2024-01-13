@@ -24,11 +24,4 @@ public class UserLogController {
         model.addAttribute("data", userLogs);
         return "home"; //
     }
-
-    @GetMapping("/hello")
-    public String hello(Model model) {
-        List<UserLog> userLogs = userLogRepository.findAll();
-        model.addAttribute("data", userLogs);
-        return "home"; //
-    }
 }

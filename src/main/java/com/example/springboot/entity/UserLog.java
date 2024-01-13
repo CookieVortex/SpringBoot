@@ -2,7 +2,6 @@ package com.example.springboot.entity;
 
 import jakarta.persistence.*;
 
-
 @Entity
 @Table(name = "userlog")
 public class UserLog {
