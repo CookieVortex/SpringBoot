@@ -8,7 +8,7 @@ I am displaying the server database on a web page, I will also make it possible 
 
 ![Screenshot_2](https://github.com/CookieVortex/SpringBoot/assets/24642100/b8bae5cc-1b07-4c49-9c1b-8b73e3746383)
 
+![Screenshot_5](https://github.com/CookieVortex/SpringBoot/assets/24642100/05af6661-cf8c-4f3a-90a0-9af2a6c2a154)
 
-![Screenshot_3](https://github.com/CookieVortex/SpringBoot/assets/24642100/9210a670-c309-40b9-8ff1-5ad7b166e12b)
 
 ![Screenshot_4](https://github.com/CookieVortex/SpringBoot/assets/24642100/319dcd9d-3062-4796-86f3-dbaa43466c81)
