@@ -194,10 +194,34 @@ ul {
     border: 1px solid #dc3545;
     padding: 25px;
     border-radius: 10px;
-    margin: 20px auto; /* Убираем margin-bottom и добавляем margin и auto для центрирования */
-    width: 20%;
+    margin: auto;
+    width: 27%;
+    z-index: 1;
+    animation: shake 0.9s ease-in-out;
 }
 
+@keyframes shake {
+    30%, 50%, 70% {
+        transform: translate3d(-4px, 0, 0); /* Тряска влево */
+    }
+
+    40%, 60% {
+        transform: translate3d(4px, 0, 0); /* Тряска вправо */
+    }
+}
+
+.back-link {
+    text-decoration: none;
+}
+
+.back-link:hover {
+    text-decoration: none;
+}
+
+.or-separator {
+    margin-top: 30px;
+    font-size: 14px !important;
+}
 
 
 @media only screen and (max-width: 767px) {
@@ -224,7 +248,6 @@ ul {
 @media only screen and (min-width: 992px) {
 
 }
-
 
 
 @media only screen and (min-width: 768px) and (max-width: 991px) {

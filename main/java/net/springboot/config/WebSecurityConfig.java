@@ -47,23 +47,21 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         UserDetailsService userDetailsService = userDetailsService();
-        http.authorizeRequests()
-                .antMatchers("/users/**").hasRole("ADMIN")
-                .anyRequest().permitAll()
+        http
+                .authorizeRequests()
+                .antMatchers("/**").permitAll() // Allow public access
+                .antMatchers("/users/**").hasRole("ADMIN") // Restricted to users with ADMIN role
+                .anyRequest().authenticated() // Require authentication for all other requests
                 .and()
                 .formLogin()
                 .loginPage("/login")
                 .failureUrl("/login?error")
                 .usernameParameter("email")
-                .defaultSuccessUrl("/users")
+                .defaultSuccessUrl("/")
                 .permitAll()
                 .and()
-                .rememberMe()
-                .key("uniqueAndSecret")
-                .tokenValiditySeconds(86400)
-                .userDetailsService(userDetailsService)
-                .and()
-                .logout().logoutSuccessUrl("/").permitAll();
+                .logout()
+                .permitAll();
     }
 
 }

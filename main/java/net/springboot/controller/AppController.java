@@ -3,8 +3,6 @@ package net.springboot.controller;
 import net.springboot.model.User;
 import net.springboot.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -44,19 +42,11 @@ public class AppController {
 
     @GetMapping("/users")
     public String listUsers(Model model) {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        boolean isAdmin = authentication.getAuthorities().stream()
-                .anyMatch(a -> a.getAuthority().equals("ROLE_ADMIN"));
-
-        if (isAdmin) {
-            List<User> listUsers = userRepo.findAll();
-            model.addAttribute("listUsers", listUsers);
-            return "users";
-        } else {
-            // Обработка случая, когда у пользователя нет роли "ADMIN"
-            return "redirect:/access-denied"; // Например, перенаправление на страницу с сообщением об отказе в доступе
-        }
+        List<User> listUsers = userRepo.findAll();
+        model.addAttribute("listUsers", listUsers);
+        return "users";
     }
+
     @GetMapping("/login")
     public String login() {
         return "login";

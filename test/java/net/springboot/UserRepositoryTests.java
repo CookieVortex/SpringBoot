@@ -30,6 +30,7 @@ public class UserRepositoryTests {
 		user.setPassword("ravi2020");
 		user.setFirstName("Ravi");
 		user.setLastName("Kumar");
+		user.setRole("USER");
 		
 		User savedUser = repo.save(user);
 		
