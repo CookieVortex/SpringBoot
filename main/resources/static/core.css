@@ -12,22 +12,6 @@ body {
     color: #fff;
 }
 
-
-.nav {
-    box-shadow: 0px 1px 6px rgba(0, 0, 0, 0.5);
-    padding-bottom: 40px;
-}
-
-.nav-link {
-    color: #007bff !important;
-}
-
-
-header {
-    position: relative;
-    z-index: 1;
-}
-
 main {
     display: flex;
     flex-direction: column;
@@ -35,6 +19,16 @@ main {
     text-align: center;
     padding-bottom: 100px;
 }
+
+.nav {
+    box-shadow: 0px 1px 6px rgba(0, 0, 0, 0.2);
+    padding-bottom: 35px;
+}
+
+.nav-link {
+    color: #007bff;
+}
+
 
 h3 {
     padding-top: 5%;
@@ -53,7 +47,6 @@ h3 {
     color: #fff; /* Белый цвет текста */
 }
 
-
 .main-content {
     margin-top: 50px;
     display: flex;
@@ -68,30 +61,35 @@ h3 {
 }
 
 .footer-dark {
-    padding: 30px 0;
+    padding: 30px;
     color: #f0f9ff;
     background-color: #282d32;
     text-align: center;
-    position: absolute; /* Добавьте это свойство */
-    width: 100%; /* Чтобы подвал занимал всю ширину страницы */
-    bottom: 0; /* Прижимаем подвал к нижней части страницы */
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
 }
+
+.footer-dark .copyright {
+    margin: 0;
+}
+
 
 .card-title,
 .text-center {
     color: #fff !important; /* Белый цвет текста с использованием !important */
 }
 
-
-img {
-    width: 100%;
-    background-size: 100% 100%;
-}
-
 ul {
     padding-top: 30px;
     padding-right: 20px;
 }
+
 
 .login-dark {
     height: 700px;
@@ -110,7 +108,7 @@ ul {
     position: absolute;
     top: 50%;
     left: 50%;
-    color: #fff;
+    color: #6f7a85;
     box-shadow: 3px 3px 4px rgba(0, 0, 0, 0.2);
 }
 
@@ -140,10 +138,13 @@ ul {
     margin-top: 26px;
     text-shadow: none;
     outline: none;
+    transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
-.login-dark form .btn-primary:hover, .login-dark form .btn-primary:active {
-    background: #214a80;
+
+.login-dark form .btn-primary:hover,
+.login-dark form .btn-primary:active {
+    background: #007bff;
     outline: none;
 }
 
@@ -164,4 +165,97 @@ ul {
 .login-dark form .btn-primary:active {
     transform: translateY(1px);
 }
+
+.login-dark form .btn-primary {
+    background: #214a80;
+    border: none;
+    border-radius: 4px;
+    padding: 11px;
+    box-shadow: none;
+    margin-top: 26px;
+    text-shadow: none;
+    outline: none;
+    transition: background-color 0.5s ease;
+}
+
+.login-dark form .btn-primary:hover,
+.login-dark form .btn-primary:active {
+    background: #004080; /* Новый цвет фона при наведении */
+    outline: none;
+}
+
+.login-dark form .btn-primary:hover::before {
+    transform: translateX(0);
+}
+
+.login-dark .alert-danger {
+    background-color: #dc3545;
+    color: #fff;
+    border: 1px solid #dc3545;
+    padding: 25px;
+    border-radius: 10px;
+    margin: 20px auto; /* Убираем margin-bottom и добавляем margin и auto для центрирования */
+    width: 20%;
+}
+
+
+
+@media only screen and (max-width: 767px) {
+    .login-dark form {
+        max-width: 100%;
+    }
+}
+
+
+@media only screen and (max-width: 767px) {
+    .login-dark .alert-danger {
+        width: 100%;
+    }
+}
+
+
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+    .login-dark .alert-danger {
+        width: 50%;
+    }
+}
+
+
+@media only screen and (min-width: 992px) {
+
+}
+
+
+
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+    .login-dark form {
+        max-width: 80%;
+    }
+}
+
+
+@media only screen and (max-width: 767px) {
+    .footer-dark {
+        position: static;
+        bottom: auto;
+        left: auto;
+        right: auto;
+        width: 100%;
+    }
+}
+
+/* Стили для планшетов */
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+    .footer-dark {
+        padding: 20px;
+    }
+}
+
+
+@media only screen and (min-width: 992px) {
+
+}
+
+
+
 
