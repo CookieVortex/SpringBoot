@@ -3,6 +3,7 @@ package net.springboot.controller;
 import net.springboot.model.User;
 import net.springboot.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -35,17 +36,20 @@ public class AppController {
         String encodedPassword = passwordEncoder.encode(user.getPassword());
         user.setPassword(encodedPassword);
 
+        user.setRole("USER");
         userRepo.save(user);
 
         return "register_success";
     }
 
     @GetMapping("/users")
+    @PreAuthorize("hasRole('ADMIN')")
     public String listUsers(Model model) {
         List<User> listUsers = userRepo.findAll();
         model.addAttribute("listUsers", listUsers);
         return "users";
     }
+
 
     @GetMapping("/login")
     public String login() {

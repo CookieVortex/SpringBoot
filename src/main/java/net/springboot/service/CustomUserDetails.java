@@ -1,9 +1,11 @@
 package net.springboot.service;
 
 import java.util.Collection;
+import java.util.Collections;
 
 import net.springboot.model.User;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 public class CustomUserDetails implements UserDetails {
@@ -16,7 +18,7 @@ public class CustomUserDetails implements UserDetails {
 
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
-		return null;
+		return Collections.singleton(new SimpleGrantedAuthority(user.getRole()));
 	}
 
 	@Override

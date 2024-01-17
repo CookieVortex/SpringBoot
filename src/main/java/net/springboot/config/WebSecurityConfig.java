@@ -7,6 +7,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -45,12 +46,20 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     @Override
+    public void configure(WebSecurity web) throws Exception {
+        web
+                .ignoring()
+                .antMatchers("/resources/**", "/static/**", "/css/**", "/js/**", "/images/**");
+    }
+
+    @Override
     protected void configure(HttpSecurity http) throws Exception {
         UserDetailsService userDetailsService = userDetailsService();
         http
+
                 .authorizeRequests()
-                .antMatchers("/**").permitAll() // Allow public access
-                .antMatchers("/users/**").hasRole("ADMIN") // Restricted to users with ADMIN role
+                .antMatchers("/***").hasAnyAuthority("ADMIN")
+                .antMatchers("/users").access("hasAnyRole('USER')")
                 .anyRequest().authenticated() // Require authentication for all other requests
                 .and()
                 .formLogin()
@@ -63,6 +72,5 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .logout()
                 .permitAll();
     }
-
 }
 
