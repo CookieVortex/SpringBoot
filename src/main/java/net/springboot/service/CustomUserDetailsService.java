@@ -1,5 +1,7 @@
-package net.codejava;
+package net.springboot.service;
 
+import net.springboot.model.User;
+import net.springboot.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

@@ -1,5 +1,6 @@
-package net.codejava;
+package net.springboot.repository;
 
+import net.springboot.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 

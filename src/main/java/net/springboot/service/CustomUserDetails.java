@@ -1,7 +1,8 @@
-package net.codejava;
+package net.springboot.service;
 
 import java.util.Collection;
 
+import net.springboot.model.User;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 

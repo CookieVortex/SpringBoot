@@ -1,7 +1,9 @@
-package net.codejava;
+package net.springboot;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import net.springboot.model.User;
+import net.springboot.repository.UserRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
@@ -28,6 +30,7 @@ public class UserRepositoryTests {
 		user.setPassword("ravi2020");
 		user.setFirstName("Ravi");
 		user.setLastName("Kumar");
+		user.setRole("USER");
 		
 		User savedUser = repo.save(user);
 		
