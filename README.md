@@ -1,6 +1,11 @@
 # SpringBoot
+Spring application that implements a list of features
+Possibility of registration
+Possibility of login, authentication
+User rights (Admin, user)
+The user cannot view some areas of the site
+
 In progress...
-I am displaying the server database on a web page, I will also make it possible to manage the database through a web service and personal account
 
 
 ![Screenshot_1](https://github.com/CookieVortex/SpringBoot/assets/24642100/208d7ef1-500a-4bb3-9dd9-02d19b219045)
