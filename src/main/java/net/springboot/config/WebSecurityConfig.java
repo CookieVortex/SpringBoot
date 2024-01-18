@@ -12,6 +12,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import net.springboot.service.CustomUserDetailsService;
 
 import javax.sql.DataSource;
 
@@ -20,6 +21,9 @@ import javax.sql.DataSource;
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private DataSource dataSource;
+
+    @Autowired
+    private CustomUserDetailsService customUserDetailsService;
 
     @Bean
     public UserDetailsService userDetailsService() {
@@ -42,7 +46,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.authenticationProvider(authenticationProvider());
+        auth.userDetailsService(customUserDetailsService);
     }
 
     @Override
@@ -56,10 +60,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         UserDetailsService userDetailsService = userDetailsService();
         http
-
+                .httpBasic().and()
                 .authorizeRequests()
-                .antMatchers("/***").hasAnyAuthority("ADMIN")
-                .antMatchers("/users").access("hasAnyRole('USER')")
+                .antMatchers("/", "/register").permitAll()
+                .antMatchers("/users", "/index").hasAnyAuthority("ADMIN")
                 .anyRequest().authenticated() // Require authentication for all other requests
                 .and()
                 .formLogin()

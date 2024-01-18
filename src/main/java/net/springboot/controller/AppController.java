@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @Controller
@@ -43,7 +44,6 @@ public class AppController {
     }
 
     @GetMapping("/users")
-    @PreAuthorize("hasRole('ADMIN')")
     public String listUsers(Model model) {
         List<User> listUsers = userRepo.findAll();
         model.addAttribute("listUsers", listUsers);
@@ -55,4 +55,11 @@ public class AppController {
     public String login() {
         return "login";
     }
+
+    @GetMapping("/logout-success")
+    public String performLogout(Model model) {
+        model.addAttribute("message", "You have been successfully logged out.");
+        return "logout_success";
+    }
+
 }
