@@ -1,7 +1,6 @@
 package net.springboot.config;
 
 import net.springboot.service.CustomUserDetailsService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
@@ -12,18 +11,25 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import net.springboot.service.CustomUserDetailsService;
+import org.springframework.security.web.authentication.rememberme.JdbcTokenRepositoryImpl;
+import org.springframework.security.web.authentication.rememberme.PersistentTokenRepository;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 import javax.sql.DataSource;
+
 
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
-    @Autowired
-    private DataSource dataSource;
 
-    @Autowired
-    private CustomUserDetailsService customUserDetailsService;
+    private final CustomUserDetailsService customUserDetailsService;
+
+    private final DataSource dataSource;
+
+    public WebSecurityConfig(CustomUserDetailsService customUserDetailsService, DataSource dataSource) {
+        this.customUserDetailsService = customUserDetailsService;
+        this.dataSource = dataSource;
+    }
 
     @Bean
     public UserDetailsService userDetailsService() {
@@ -50,7 +56,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     @Override
-    public void configure(WebSecurity web) throws Exception {
+    public void configure(WebSecurity web) {
         web
                 .ignoring()
                 .antMatchers("/resources/**", "/static/**", "/css/**", "/js/**", "/images/**");
@@ -58,7 +64,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        UserDetailsService userDetailsService = userDetailsService();
         http
                 .httpBasic().and()
                 .authorizeRequests()
@@ -74,7 +79,24 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .permitAll()
                 .and()
                 .logout()
-                .permitAll();
+                .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+                .logoutSuccessUrl("/login?logout")
+                .deleteCookies("my-remember-me-cookie")
+                .permitAll()
+                .and()
+                .rememberMe()
+                //.key("my-secure-key")
+                .rememberMeCookieName("my-remember-me-cookie")
+                .tokenRepository(persistentTokenRepository())
+                .tokenValiditySeconds(24 * 60 * 60)
+                .and()
+                .exceptionHandling();
+    }
+
+    PersistentTokenRepository persistentTokenRepository(){
+        JdbcTokenRepositoryImpl tokenRepositoryImpl = new JdbcTokenRepositoryImpl();
+        tokenRepositoryImpl.setDataSource(dataSource);
+        return tokenRepositoryImpl;
     }
 }
 

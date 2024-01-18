@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 
-<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 
 <head>
     <meta charset="ISO-8859-1">
@@ -35,8 +37,6 @@
 <body>
 
 <header class="header">
-
-
     <ul class="nav nav-pills justify-content-end">
         <li class="nav-item">
             <a class="nav-link custom-style text-white bg-primary" th:href="@{/register}">Sign Up</a>
@@ -56,56 +56,31 @@
 <main>
 
     <h3>User List</h3>
-    <table class="table table-dark table-striped custom-table">
-        <thead>
-        <tr>
-            <th scope="col">#</th>
-            <th scope="col">First</th>
-            <th scope="col">Last</th>
-            <th scope="col">Handle</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-            <td>1</td>
-            <td>John</td>
-            <td>Doe</td>
-            <td>@john.doe</td>
-        </tr>
-        <tr>
-            <td>2</td>
-            <td>Jane</td>
-            <td>Smith</td>
-            <td>@jane.smith</td>
-        </tr>
-        <tr>
-            <td>2</td>
-            <td>Jane</td>
-            <td>Smith</td>
-            <td>@jane.smith</td>
-        </tr>
-        <tr>
-            <td>2</td>
-            <td>Jane</td>
-            <td>Smith</td>
-            <td>@jane.smith</td>
-        </tr>
-        <tr>
-            <td>2</td>
-            <td>Jane</td>
-            <td>Smith</td>
-            <td>@jane.smith</td>
-        </tr>
-        <tr>
-            <td>2</td>
-            <td>Jane</td>
-            <td>Smith</td>
-            <td>@jane.smith</td>
-        </tr>
+    <div>
+        <table class="table table-dark table-striped">
+            <thead class="thead-dark">
+            <tr>
+                <th>User ID</th>
+                <th>E-mail</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Role</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="user: ${listUsers}">
+                <td th:text="${user.id}">User ID</td>
+                <td th:text="${user.email}">E-mail</td>
+                <td th:text="${user.firstName}">First Name</td>
+                <td th:text="${user.lastName}">Last Name</td>
+                <td th:text="${user.role}">Role</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
 
-        </tbody>
-    </table>
 </main>
+
 
 <footer class="footer-dark">
     <p class="copyright">Company Name © 2018</p>
