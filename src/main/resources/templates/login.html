@@ -20,11 +20,7 @@
         <div th:if="${param.error}" class="alert alert-danger">
             Invalid email or password. Please try again.
         </div>
-
-
-
-
-        <form th:action="@{/login}" method="post" class="login-form">
+        <form th:action="@{/j_spring_security_check}" method="post" class="login-form">
             <h2 class="sr-only">Login Form</h2>
             <a href="/" class="back-link">Home</a>
             <div class="illustration"><i class="icon ion-ios-locked-outline"></i></div>
