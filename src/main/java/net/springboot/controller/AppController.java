@@ -41,6 +41,18 @@ public class AppController {
         return "index";
     }
 
+    @GetMapping("/profile")
+    public String showProfile(Model model) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String email = auth.getName();
+
+        User user = userRepo.findByEmail(email);
+
+        model.addAttribute("user", user);
+
+        return "profile";
+    }
+
 
     @GetMapping("/register")
     public String showRegistrationForm(Model model) {
@@ -74,3 +86,4 @@ public class AppController {
         return "login";
     }
 }
+
