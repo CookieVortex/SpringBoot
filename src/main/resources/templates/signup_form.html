@@ -24,88 +24,67 @@
 
 <body>
 
-<header class="header ">
+<header class="header">
     <ul class="nav nav-pills justify-content-end">
         <li class="nav-item">
-            <a class="nav-link custom-style text-white bg-primary" th:href="@{/register}">Sign Up</a>
+            <a class="nav-link" th:href="@{/}">Home</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item" th:unless="${isAuthenticated}">
             <a class="nav-link" th:href="@{/login}">Log In</a>
         </li>
-        <li class="nav-item">
-            <a class="nav-link" th:href="@{/users}">List of Users</a>
+        <li class="nav-item" th:unless="${isAuthenticated}">
+            <a class="nav-link" th:href="@{/register}">Sign Up</a>
+        </li>
+        <li class="nav-item" th:if="${userRole == 'ADMIN'}">
+            <a class="nav-link" th:href="@{/users}">Admin Panel</a>
         </li>
     </ul>
 </header>
 
-
 <main>
 
-<div class="main-content">
-    <div class="card bg-dark">
-        <article class="card-body mx-auto" style="max-width: 400px;">
-            <h4 class="card-title mt-3 text-center">Create Account</h4>
-            <p class="text-center">Get started with your free account</p>
 
-            <form th:action="@{/process_register}" th:object="${user}" method="post"
-                  style="max-width: 600px; margin: 0 auto;">
-                <div class="m-3">
-                    <!-- First Name -->
-                    <div class="form-group row">
-                        <div class="input-group col-12">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text"> <i class="fa fa-user"></i> </span>
-                            </div>
-                            <input type="text" th:field="*{firstName}" class="form-control" placeholder="Your Name"
-                                   required minlength="2"
-                                   maxlength="20"/>
+    <div class="login-wrap">
+        <div class="login-html">
+            <div class="login-form">
+                <form th:action="@{/process_register}" method="post" class="login-form" th:object="${user}">
+                    <div class="sign-up-htm">
+                        <div class="group">
+                            <label for="firstName" class="label">First Name</label>
+                            <input id="firstName" type="text" th:field="*{firstName}" class="input">
                         </div>
-                    </div>
+                        <div class="group">
+                            <label for="lastName" class="label">Last Name</label>
+                            <input id="lastName" type="text" th:field="*{lastName}" class="input">
+                        </div>
+                        <div class="group">
+                            <label for="email" class="label">Email Address</label>
+                            <input id="email" type="text" th:field="*{email}" class="input">
+                        </div>
+                        <div class="group">
+                            <label for="password" class="label">Password</label>
+                            <input id="password" type="password" th:field="*{password}" class="input"
+                                   data-type="password">
+                        </div>
+                        <div class="group">
+                            <label for="repeatPassword" class="label">Repeat Password</label>
+                            <input id="repeatPassword" type="password" th:field="*{repeatPassword}" class="input"
+                                   data-type="password">
+                        </div>
 
-                    <!-- Last Name -->
-                    <div class="form-group row">
-                        <div class="input-group col-12">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text"> <i class="fa fa-user"></i> </span>
-                            </div>
-                            <input type="text" th:field="*{lastName}" class="form-control" placeholder="Your Last Name"
-                                   required minlength="2"
-                                   maxlength="20"/>
+                        <div class="group">
+                            <br>
+                            <button type="submit" class="button">Sign Up</button>
                         </div>
+                        <div class="hr"></div>
                     </div>
-                    <!-- Email -->
-                    <div class="form-group row">
-                        <div class="input-group col-12">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text"> <i class="fa fa-envelope"></i> </span>
-                            </div>
-                            <input type="email" th:field="*{email}" class="form-control" placeholder="Your Email"
-                                   required/>
-                        </div>
-                    </div>
-
-                    <!-- Password -->
-                    <div class="form-group row">
-                        <div class="input-group col-12">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
-                            </div>
-                            <input type="password" th:field="*{password}" class="form-control"
-                                   placeholder="Create password" required minlength="6"
-                                   maxlength="10"/>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <button type="submit" class="btn btn-primary btn-block"> Create Account</button>
-                    </div>
-                </div>
-            </form>
-        </article>
+                </form>
+            </div>
+        </div>
     </div>
-</div>
 
-    </main>
+
+</main>
 <footer class="footer-dark">
     <div class="container">
         <p class="copyright text-center">Company Name © 2018</p>

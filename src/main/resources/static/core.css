@@ -1,7 +1,14 @@
-html, body {
-    height: 100%;
+body, html {
     margin: 0;
     padding: 0;
+    height: 100%;
+}
+
+main {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 body {
@@ -12,13 +19,6 @@ body {
     color: #fff;
 }
 
-main {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    padding-bottom: 100px;
-}
 
 .nav {
     box-shadow: 0px 1px 6px rgba(0, 0, 0, 0.2);
@@ -26,7 +26,7 @@ main {
 }
 
 .nav-link {
-    color: #007bff;
+    color: #007bff !important;
 }
 
 
@@ -35,20 +35,8 @@ h3 {
     color: #fff !important;
 }
 
-.custom-table {
-    max-width: 50%;
-    margin-top: 100px;
-}
-
-
-.custom-style {
-    background-color: #007bff; /* Синий цвет */
-    border: 2px solid #007bff;
-    color: #fff; /* Белый цвет текста */
-}
-
 .main-content {
-    margin-top: 50px;
+    margin-top: 150px;
     display: flex;
     justify-content: center;
 }
@@ -56,29 +44,9 @@ h3 {
 
 .card {
     background-color: #212121;
-    max-width: 400px;
+    max-width: 800px;
     width: 100%;
 }
-
-.footer-dark {
-    padding: 30px;
-    color: #f0f9ff;
-    background-color: #282d32;
-    text-align: center;
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-}
-
-.footer-dark .copyright {
-    margin: 0;
-}
-
 
 .card-title,
 .text-center {
@@ -90,6 +58,24 @@ ul {
     padding-right: 20px;
 }
 
+.footer-dark {
+    padding: 30px;
+    color: #f0f9ff;
+    background-color: #282d32;
+    text-align: center;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative; /* Изменено на relative */
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+.footer-dark .copyright {
+    margin: 0;
+}
 
 .login-dark {
     height: 700px;
@@ -104,13 +90,11 @@ ul {
     background-color: #1e2833;
     padding: 40px;
     border-radius: 4px;
-    transform: translate(-50%, -50%);
-    position: absolute;
-    top: 50%;
-    left: 50%;
+    margin: auto; /* Center the form horizontally */
     color: #6f7a85;
     box-shadow: 3px 3px 4px rgba(0, 0, 0, 0.2);
 }
+
 
 .login-dark .illustration {
     text-align: center;
@@ -278,6 +262,68 @@ ul {
 @media only screen and (min-width: 992px) {
 
 }
+
+.login-form .group {
+    margin-bottom: 20px; /* Adjusted margin */
+}
+
+.login-form .group .label,
+.login-form .group .input,
+.login-form .group .button {
+    width: 100%;
+    color: #fff;
+    display: block;
+}
+
+.login-form .group .input,
+.login-form .group .button {
+    border: none;
+    padding: 15px 20px;
+    border-radius: 25px;
+    background: rgba(255, 255, 255, .1);
+}
+
+.login-form .group input[data-type="password"] {
+    text-security: circle;
+    -webkit-text-security: circle;
+}
+
+.login-form .group .label {
+    color: #aaa;
+    font-size: 12px;
+}
+
+.login-form .group .button {
+    background: #1161ee;
+}
+
+.login-form .hr {
+    height: 2px;
+    margin: 40px 0 40px 0; /* Adjusted margin */
+    background: rgba(255, 255, 255, .2);
+}
+
+.login-form .foot-lnk {
+    text-align: center;
+}
+
+.login-wrap {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 12px 15px 0 rgba(0, 0, 0, .24), 0 17px 50px 0 rgba(0, 0, 0, .19);
+}
+
+.login-html {
+    width: 20%;
+    padding: 50px;
+    box-shadow: 0 12px 15px 0 rgba(0, 0, 0, .24), 0 17px 50px 0 rgba(0, 0, 0, .19);
+    margin-top: 70px;
+    margin-bottom: 70px;
+}
+
+
 
 
 

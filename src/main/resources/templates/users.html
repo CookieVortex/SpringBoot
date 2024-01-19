@@ -26,19 +26,15 @@
 <header class="header">
     <ul class="nav nav-pills justify-content-end">
         <li class="nav-item">
-            <a class="nav-link custom-style text-white bg-primary" th:href="@{/register}">Sign Up</a>
+            <a class="nav-link" th:href="@{/}">Home</a>
         </li>
-        <li class="nav-item">
-            <a class="nav-link" th:href="@{/login}">Log In</a>
 
+        <li class="nav-item" th:if="${userRole == 'ADMIN'}">
+            <a class="nav-link" th:href="@{/users}">Admin Panel</a>
         </li>
-        <div sec:authorize="hasRole('ADMIN')">
-            <li class="nav-item">
-                <a class="nav-link" th:href="@{/users}">List of Users</a>
-            </li>
-        </div>
     </ul>
 </header>
+
 
 <div class="container text-center">
     <div>
@@ -48,7 +44,7 @@
             <br>
             <p>
             <p>
-            <span th:text="${#request.userPrincipal != null ? #request.userPrincipal.principal.authorities.iterator().next().authority : '?????'}"></span>
+            <span th:text="${#request.userPrincipal != null ? #request.userPrincipal.principal.authorities.iterator().next().authority : 'Guest'}"></span>
             <span th:text="${#request.userPrincipal != null ? #request.userPrincipal.principal.fullName : ''}"></span>
 
             </p>
