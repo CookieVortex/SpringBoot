@@ -47,14 +47,16 @@
         </li>
         <div sec:authorize="hasRole('ADMIN')">
             <li class="nav-item">
-                <a class="nav-link" th:href="@{/users}">List of Users</a>
+                <a class="btn btn-primary" th:if="${#authentication != null and #authentication.principal != null and #authentication.principal.role == 'ADMIN'}" th:href="@{/users}">List of Users</a>
             </li>
         </div>
     </ul>
 </header>
 
 <main>
-
+    <div th:if="${userRole == 'ADMIN'}">
+        <p>????? ??????????, ?????????????!</p>
+    </div>
     <h3>User List</h3>
     <div>
         <table class="table table-dark table-striped">

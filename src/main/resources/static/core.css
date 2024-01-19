@@ -35,20 +35,8 @@ h3 {
     color: #fff !important;
 }
 
-.custom-table {
-    max-width: 50%;
-    margin-top: 100px;
-}
-
-
-.custom-style {
-    background-color: #007bff; /* Синий цвет */
-    border: 2px solid #007bff;
-    color: #fff; /* Белый цвет текста */
-}
-
 .main-content {
-    margin-top: 50px;
+    margin-top: 150px;
     display: flex;
     justify-content: center;
 }
@@ -56,8 +44,18 @@ h3 {
 
 .card {
     background-color: #212121;
-    max-width: 400px;
+    max-width: 800px;
     width: 100%;
+}
+
+.card-title,
+.text-center {
+    color: #fff !important; /* Белый цвет текста с использованием !important */
+}
+
+ul {
+    padding-top: 30px;
+    padding-right: 20px;
 }
 
 .footer-dark {
@@ -78,18 +76,6 @@ h3 {
 .footer-dark .copyright {
     margin: 0;
 }
-
-
-.card-title,
-.text-center {
-    color: #fff !important; /* Белый цвет текста с использованием !important */
-}
-
-ul {
-    padding-top: 30px;
-    padding-right: 20px;
-}
-
 
 .login-dark {
     height: 700px;
@@ -278,6 +264,8 @@ ul {
 @media only screen and (min-width: 992px) {
 
 }
+
+
 
 
 

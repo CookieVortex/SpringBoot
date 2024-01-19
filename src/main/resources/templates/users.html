@@ -34,7 +34,7 @@
         </li>
         <div sec:authorize="hasRole('ADMIN')">
             <li class="nav-item">
-                <a class="nav-link" th:href="@{/users}">List of Users</a>
+                <a class="btn btn-primary" th:if="${#authentication != null and #authentication.principal != null and #authentication.principal.role == 'ADMIN'}" th:href="@{/users}">List of Users</a>
             </li>
         </div>
     </ul>
@@ -48,7 +48,7 @@
             <br>
             <p>
             <p>
-            <span th:text="${#request.userPrincipal != null ? #request.userPrincipal.principal.authorities.iterator().next().authority : '?????'}"></span>
+            <span th:text="${#request.userPrincipal != null ? #request.userPrincipal.principal.authorities.iterator().next().authority : 'Guest'}"></span>
             <span th:text="${#request.userPrincipal != null ? #request.userPrincipal.principal.fullName : ''}"></span>
 
             </p>

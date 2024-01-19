@@ -1,58 +1,59 @@
 package net.springboot.service;
 
-import java.util.Collection;
-import java.util.Collections;
-
 import net.springboot.model.User;
 import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+
+import java.util.Collection;
 
 public class CustomUserDetails implements UserDetails {
 
-	private User user;
-	
-	public CustomUserDetails(User user) {
-		this.user = user;
-	}
+    private final User user;
 
-	@Override
-	public Collection<? extends GrantedAuthority> getAuthorities() {
-		return Collections.singleton(new SimpleGrantedAuthority(user.getRole()));
-	}
 
-	@Override
-	public String getPassword() {
-		return user.getPassword();
-	}
+    public CustomUserDetails(User user, Collection<? extends GrantedAuthority> authorities) {
+        this.user = user;
+        this.authorities = authorities;
+    }
 
-	@Override
-	public String getUsername() {
-		return user.getEmail();
-	}
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return authorities;
+    }
 
-	@Override
-	public boolean isAccountNonExpired() {
-		return true;
-	}
+    private final Collection<? extends GrantedAuthority> authorities;
 
-	@Override
-	public boolean isAccountNonLocked() {
-		return true;
-	}
+    @Override
+    public String getPassword() {
+        return user.getPassword();
+    }
 
-	@Override
-	public boolean isCredentialsNonExpired() {
-		return true;
-	}
+    @Override
+    public String getUsername() {
+        return user.getEmail();
+    }
 
-	@Override
-	public boolean isEnabled() {
-		return true;
-	}
-	
-	public String getFullName() {
-		return user.getFirstName() + " " + user.getLastName();
-	}
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
 
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return true;
+    }
+
+    public String getFullName() {
+        return user.getFirstName() + " " + user.getLastName();
+    }
 }

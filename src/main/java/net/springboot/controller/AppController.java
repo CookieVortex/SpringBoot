@@ -2,11 +2,13 @@ package net.springboot.controller;
 
 import net.springboot.model.User;
 import net.springboot.repository.UserRepository;
+import net.springboot.service.UserRoleService;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import java.util.List;
 
@@ -14,18 +16,25 @@ import java.util.List;
 public class AppController {
 
     private final UserRepository userRepo;
+    private final UserRoleService userRoleService;
 
-    public AppController(UserRepository userRepo) {
+    public AppController(UserRepository userRepo, UserRoleService userRoleService) {
         this.userRepo = userRepo;
+        this.userRoleService = userRoleService;
     }
+
 
     @GetMapping("")
     public String viewHomePage(Model model) {
         List<User> listUsers = userRepo.findAll();
         model.addAttribute("listUsers", listUsers);
+
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String email = auth.getName();
+        String userRole = userRoleService.getUserRole(email);
+        model.addAttribute("userRole", userRole);
         return "index";
     }
-
     @GetMapping("/register")
     public String showRegistrationForm(Model model) {
         model.addAttribute("user", new User());
