@@ -47,7 +47,12 @@
             <br>
             <br>
             <p>
-                Welcome <b th:text="${#request.userPrincipal != null ? #request.userPrincipal.principal.fullName : '?????'}"></b>
+            <p>
+            <span th:text="${#request.userPrincipal != null ? #request.userPrincipal.principal.authorities.iterator().next().authority : '?????'}"></span>
+            <span th:text="${#request.userPrincipal != null ? #request.userPrincipal.principal.fullName : ''}"></span>
+
+            </p>
+
             </p>
             <br>
             <input type="submit" value="Sign Out"/>
