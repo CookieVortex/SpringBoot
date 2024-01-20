@@ -513,17 +513,6 @@ a {
     margin-left: -175px;
 }
 
-input[type="text"],
-input[type="password"] {
-    width: 350px;
-    padding: 20px 10px;
-    background: transparent;
-    border: 0;
-    border-bottom: 1px solid #435160;
-    outline: none;
-    color: #6D7781;
-}
-
 
 #agree:checked ~ label[for=agree] {
     background: #435160;
