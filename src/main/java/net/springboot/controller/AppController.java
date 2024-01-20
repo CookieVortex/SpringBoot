@@ -9,8 +9,10 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import java.util.Date;
 import java.util.List;
 
 @Controller
@@ -62,16 +64,18 @@ public class AppController {
     }
 
     @PostMapping("/process_register")
-    public String processRegister(User user) {
+    public String processRegister(@ModelAttribute("user") User user) {
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         String encodedPassword = passwordEncoder.encode(user.getPassword());
         user.setPassword(encodedPassword);
 
+        user.setRegistrationDate(new Date());
         user.setRole("USER");
         userRepo.save(user);
 
         return "register_success";
     }
+
 
     @GetMapping("/users")
     public String listUsers(Model model) {

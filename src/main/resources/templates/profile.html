@@ -13,25 +13,6 @@
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-            integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
-            crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
-            integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
-            crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
-            integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
-            crossorigin="anonymous"></script>
-    <!-- Bootstrap CSS ? JS -->
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-            integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-            crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-            crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-            crossorigin="anonymous"></script>
 
 </head>
 
@@ -60,9 +41,48 @@
     </ul>
 </header>
 
-<body>
+<!-- Page content -->
+<div class="container-fluid mt--7">
+    <div class="row justify-content-center align-items-center">
+        <div class="col-xl-4 mb-5 mb-xl-0">
+            <div class="card card-profile shadow text-center">
+                <div class="card-profile-image">
+                    <a href="#">
+                        <img src="https://store.playstation.com/store/api/chihiro/00_09_000/container/RU/ru/99/EP2402-CUSA05624_00-AV00000000000233/0/image?_version=00_09_000&platform=chihiro&bg_color=000000&opacity=100&w=720&h=720"
+                             class="rounded-circle">
+                    </a>
+                </div>
+                <div class="card-header border-0 pt-8 pt-md-4 pb-0 pb-md-4">
+                </div>
+                <div class="card-body pt-0 pt-md-4">
+                    <div class="row">
+                        <div class="col">
+                            <div class="card-profile-stats d-flex justify-content-center mt-md-5">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text-center">
+                        <h3>
+                            <p th:text="${user.firstName + ' ' + user.lastName + ' @ ' + user.role}"></p>
 
+                        </h3>
+                        <div class="h5 font-weight-300">
+                            <i class="ni location_pin mr-2"></i><td th:text="${user.country}"></td>, <td th:text="${user.city}"></td>
+                        </div>
+                        <div class="h5 mt-4">
+                            <i class="ni business_briefcase-24 mr-2"></i>Solution Manager - Creative Tim Officer
+                        </div>
+                        <div>
+                            <i class="ni education_hat mr-2"></i>University of Computer Science
+                        </div>
+                        <hr class="my-4">
+                        <p th:text="'Registration date: ' + ${#dates.format(user.registrationDate, 'dd.MM.yyyy HH:mm')}" class="text-nowrap"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
-</body>
 
 </html>

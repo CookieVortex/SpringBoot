@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<html xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <meta charset="ISO-8859-1">
@@ -18,10 +18,17 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
             integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
             crossorigin="anonymous"></script>
+    <!-- Bootstrap CSS ? JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+            integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+            crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+            crossorigin="anonymous"></script>
 </head>
-
-
-<body>
 
 <header class="header">
     <ul class="nav nav-pills justify-content-end">
@@ -35,57 +42,99 @@
     </ul>
 </header>
 
+<body>
 
-<div class="container text-center">
-    <div>
+<br>
+<div class="datatable-container">
+    <!-- ======= Header tools ======= -->
+    <div class="header-tools">
+        <div class="tools">
+            <ul>
+                <li>
+                    <button>
+                        <i class="material-icons">add_circle</i>
+                    </button>
+                </li>
+                <li>
+                    <button>
+                        <i class="material-icons">edit</i>
+                    </button>
+                </li>
+                <li>
+                    <button>
+                        <i class="material-icons">delete</i>
+                    </button>
+                </li>
+            </ul>
+        </div>
 
-        <form th:action="@{/logout}" method="post">
-            <br>
-            <br>
-            <p>
-            <p>
-            <span th:text="${#request.userPrincipal != null ? #request.userPrincipal.principal.authorities.iterator().next().authority : 'Guest'}"></span>
-            <span th:text="${#request.userPrincipal != null ? #request.userPrincipal.principal.fullName : ''}"></span>
-
-            </p>
-
-            </p>
-            <br>
-            <input type="submit" value="Sign Out"/>
-        </form>
+        <div class="search">
+            <input type="search" class="search-input" placeholder="Search..."/>
+        </div>
     </div>
-    <br>
-    <br>
-    <div>
-        <h1>List of Users</h1>
-    </div>
 
-    <div>
-        <table class="table table-dark table-striped">
-            <thead class="thead-dark">
-            <tr>
-                <th>User ID</th>
-                <th>E-mail</th>
-                <th>First Name</th>
-                <th>Last Name</th>
-                <th>Role</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr th:each="user: ${listUsers}">
-                <td th:text="${user.id}">User ID</td>
-                <td th:text="${user.email}">E-mail</td>
-                <td th:text="${user.firstName}">First Name</td>
-                <td th:text="${user.lastName}">Last Name</td>
-                <td th:text="${user.role}">Role</td>
-            </tr>
-            </tbody>
-        </table>
+    <!-- ======= Table ======= -->
+    <table class="datatable">
+        <thead>
+        <tr>
+            <th><input type="checkbox"/></th>
+            <th>Status</th>
+            <th>First name</th>
+            <th>Last name</th>
+            <th>E-mail</th>
+            <th>Role</th>
+
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr th:each="user: ${listUsers}">
+            <td><input type="checkbox"/></td>
+            <td th:text="${user.id}"></td>
+            <td th:text="${user.firstName}">First Name</td>
+            <td th:text="${user.lastName}">Last Name</td>
+            <td th:text="${user.email}">E-mail</td>
+            <td th:text="${user.role}">Role</td>
+        </tr>
+        </tbody>
+    </table>
+
+
+    <!-- ======= Footer tools ======= -->
+    <div class="footer-tools">
+        <div class="list-items">
+            Show
+            <select name="n-entries" id="n-entries" class="n-entries">
+                <option value="5">5</option>
+                <option value="10" selected>10</option>
+                <option value="15">15</option>
+            </select>
+            entries
+        </div>
+
+        <div class="pages">
+            <ul>
+                <li><span class="active">1</span></li>
+                <li>
+                    <button>2</button>
+                </li>
+                <li>
+                    <button>3</button>
+                </li>
+                <li>
+                    <button>4</button>
+                </li>
+                <li><span>...</span></li>
+                <li>
+                    <button>9</button>
+                </li>
+                <li>
+                    <button>10</button>
+                </li>
+            </ul>
+        </div>
     </div>
 </div>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.bundle.min.js"></script>
 
 </body>
 </html>

@@ -1,6 +1,10 @@
 package net.springboot.model;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
+import javax.validation.constraints.Size;
+import java.util.Date;
 
 @Entity
 @Table(schema = "dev", name = "users")
@@ -13,10 +17,21 @@ public class User {
     @Transient
     private String repeatPassword;
 
+    @Column(name = "registration_date", nullable = false)
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date registrationDate;
+
+
+    @Column(name = "birth_date", nullable = false)
+    @Temporal(TemporalType.DATE)
+    @DateTimeFormat(pattern = "dd.MM.yyyy")
+    private Date birthday;
+
     @Column(name = "username", nullable = false, unique = true, length = 45)
     private String email;
 
     @Column(name = "password", nullable = false, length = 64)
+    @Size(min = 5, message = "Password must be at least 5 characters long")
     private String password;
 
     @Column(name = "first_name", nullable = false, length = 20)
@@ -27,6 +42,44 @@ public class User {
 
     @Column(name = "role", nullable = false, length = 10)
     private String role;
+
+    @Column(name = "city", nullable = false, length = 10)
+    private String city;
+
+    @Column(name = "country", nullable = false, length = 10)
+    private String country;
+
+    public Date getRegistrationDate() {
+        return registrationDate;
+    }
+
+    public void setRegistrationDate(Date registrationDate) {
+        this.registrationDate = registrationDate;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
+    }
+
+    public Date getBirthday() {
+        return birthday;
+    }
+
+    public void setBirthday(Date birthday) {
+        this.birthday = birthday;
+    }
 
     public String getRole() {
         return role;

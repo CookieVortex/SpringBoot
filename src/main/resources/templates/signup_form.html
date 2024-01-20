@@ -2,24 +2,11 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head>
-    <meta charset="ISO-8859-1">
+    <meta charset="UTF-8">
     <title>ProjectZomboid DataBase Panel</title>
     <link rel="stylesheet" href="/static/core.css"/>
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css">
-
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
-          integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-            integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
-            crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
-            integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
-            crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
-            integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
-            crossorigin="anonymous"></script>
-
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 </head>
 
 <body>
@@ -41,57 +28,37 @@
     </ul>
 </header>
 
-<main>
+<form th:action="@{/process_register}" method="post" th:object="${user}" class="login"
+      onsubmit="return validatePasswords()">
+    <div class="login">
 
-
-    <div class="login-wrap">
-        <div class="login-html">
-            <div class="login-form">
-                <form th:action="@{/process_register}" method="post" class="login-form" th:object="${user}">
-                    <div class="sign-up-htm">
-                        <div class="group">
-                            <label for="firstName" class="label">First Name</label>
-                            <input id="firstName" type="text" th:field="*{firstName}" class="input">
-                        </div>
-                        <div class="group">
-                            <label for="lastName" class="label">Last Name</label>
-                            <input id="lastName" type="text" th:field="*{lastName}" class="input">
-                        </div>
-                        <div class="group">
-                            <label for="email" class="label">Email Address</label>
-                            <input id="email" type="text" th:field="*{email}" class="input">
-                        </div>
-                        <div class="group">
-                            <label for="password" class="label">Password</label>
-                            <input id="password" type="password" th:field="*{password}" class="input"
-                                   data-type="password">
-                        </div>
-                        <div class="group">
-                            <label for="repeatPassword" class="label">Repeat Password</label>
-                            <input id="repeatPassword" type="password" th:field="*{repeatPassword}" class="input"
-                                   data-type="password">
-                        </div>
-
-                        <div class="group">
-                            <br>
-                            <button type="submit" class="button">Sign Up</button>
-                        </div>
-                        <div class="hr"></div>
-                    </div>
-                </form>
-            </div>
-        </div>
+        <input name="firstName" placeholder="First Name" type="text" th:field="*{firstName}" required>
+        <input name="lastName" placeholder="Last Name" type="text" th:field="*{lastName}" required>
+        <input name="email" placeholder="E-Mail Address" type="text" th:field="*{email}" required>
+        <input name="country" placeholder="Country" type="text" th:field="*{country}" required>
+        <input name="city" placeholder="City" type="text" th:field="*{city}" required>
+        <input id="date" name="date" placeholder="BirthDate: DD.MM.YYYY" type="text" th:field="*{birthday}"
+               th:maxlength="10" required>
+        <input id="password" placeholder="Password" type="password" th:field="*{password}" class="input"
+               data-type="password" th:maxlength="255" minlength="7" oninput="validatePasswords()" required>
+        <input id="repeatPassword" placeholder="Repeat Password" type="password" th:field="*{repeatPassword}"
+               class="input" data-type="password" minlength="7" oninput="validatePasswords()" required>
+        <br>
+        <br>
+        <br>
+        <input type="submit" class="button" value="Register">
     </div>
+</form>
+<script>
+    $(function () {
+        $("#date").datepicker({
+            dateFormat: "dd.mm.yy",
+            changeMonth: true,
+            changeYear: true,
+            yearRange: "1980:2022"
+        });
+    });
+</script>
 
-
-</main>
-<footer class="footer-dark">
-    <div class="container">
-        <p class="copyright text-center">Company Name © 2018</p>
-    </div>
-</footer>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
-

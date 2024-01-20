@@ -10,11 +10,20 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.Collections;
+import java.util.Date;
 
 @Service
 public class CustomUserDetailsService implements UserDetailsService {
 
-    private final UserRepository userRepository;
+
+    private UserRepository userRepository;
+
+    public void registerUser(User user) {
+        if (user != null) {
+            user.setRegistrationDate(new Date());
+            userRepository.save(user);
+        }
+    }
 
     public CustomUserDetailsService(UserRepository userRepository) {
         this.userRepository = userRepository;
