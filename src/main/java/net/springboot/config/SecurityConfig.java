@@ -40,18 +40,21 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.csrf().disable()
                 .authorizeRequests()
                 .antMatchers("/process_register").permitAll()
+                .antMatchers("/users/***").hasAnyRole("ADMIN")
                 .anyRequest().permitAll()
-                .and();
-        http.formLogin()
+                .and()
+                .formLogin()
                 .loginPage("/login")
                 .loginProcessingUrl("/j_spring_security_check")
                 .failureUrl("/login?error")
                 .usernameParameter("email")
-                .permitAll();
-        http.logout()
+                .permitAll()
+                .and()
+                .logout()
                 .permitAll()
                 .logoutUrl("/logout")
                 .logoutSuccessUrl("/login?logout")
                 .invalidateHttpSession(true);
     }
+
 }

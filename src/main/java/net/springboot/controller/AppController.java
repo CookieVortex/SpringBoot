@@ -50,7 +50,7 @@ public class AppController {
             return "index";
         } catch (Exception e) {
             logger.error("An error occurred while processing home page request", e);
-            return "error"; // Предположим, у вас есть страница ошибки с именем "error"
+            return "error";
         }
     }
 
@@ -99,15 +99,26 @@ public class AppController {
     @GetMapping("/users")
     public String listUsers(Model model) {
         try {
-            List<User> listUsers = userRepo.findAll();
-            model.addAttribute("listUsers", listUsers);
-            logger.info("User list page accessed");
-            return "users";
+            Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+            String userRole = userRoleService.getUserRole(auth.getName());
+
+            logger.info("User role: {}", userRole);
+
+            if ("ADMIN".equals(userRole)) {
+                List<User> listUsers = userRepo.findAll();
+                model.addAttribute("listUsers", listUsers);
+                logger.info("User list page accessed");
+                return "users";
+            } else {
+                logger.warn("Access denied: User does not have the required role");
+                return "access-denied";
+            }
         } catch (Exception e) {
             logger.error("An error occurred while processing user list page request", e);
             return "error";
         }
     }
+
 
     @GetMapping("/login")
     public String login() {
