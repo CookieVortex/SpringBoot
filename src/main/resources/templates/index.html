@@ -48,33 +48,14 @@
 
 
 <main>
-    <div th:if="${userRole == 'ADMIN'}">
-        <p>Hello, Admin</p>
-    </div>
-    <h3>User List</h3>
-    <div>
-        <table class="table table-dark table-striped">
-            <thead class="thead-dark">
-            <tr>
-                <th>User ID</th>
-                <th>E-mail</th>
-                <th>First Name</th>
-                <th>Last Name</th>
-                <th>Role</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr th:each="user: ${listUsers}">
-                <td th:text="${user.id}">User ID</td>
-                <td th:text="${user.email}">E-mail</td>
-                <td th:text="${user.firstName}">First Name</td>
-                <td th:text="${user.lastName}">Last Name</td>
-                <td th:text="${user.role}">Role</td>
-            </tr>
-            </tbody>
-        </table>
+    <div class="welcome-message">
+        <h1>Welcome to ProjectZomboid DataBase Panel</h1>
+        <p>Explore the database and manage your account with ease.</p>
     </div>
 
+    <div class="image-gallery">
+        <img src="https://logicservers.com/img/xproject-zomboid-logo.png.pagespeed.ic.HQtkHg0n02.png" alt="Image 1">
+    </div>
 </main>
 
 

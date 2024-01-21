@@ -46,23 +46,7 @@
     <!-- ======= Header tools ======= -->
     <div class="header-tools">
         <div class="tools">
-            <ul>
-                <li>
-                    <button>
-                        <i class="material-icons">add_circle</i>
-                    </button>
-                </li>
-                <li>
-                    <button>
-                        <i class="material-icons">edit</i>
-                    </button>
-                </li>
-                <li>
-                    <button>
-                        <i class="material-icons">delete</i>
-                    </button>
-                </li>
-            </ul>
+
         </div>
 
         <div class="search">
@@ -74,41 +58,33 @@
     <table class="datatable">
         <thead>
         <tr>
-            <th><input type="checkbox"/></th>
+
             <th>Status</th>
             <th>First name</th>
             <th>Last name</th>
             <th>E-mail</th>
             <th>Role</th>
-
+            <th>Action</th>
         </tr>
         </thead>
 
         <tbody>
         <tr th:each="user: ${listUsers}">
-            <td><input type="checkbox"/></td>
             <td th:text="${user.id}"></td>
             <td th:text="${user.firstName}">First Name</td>
             <td th:text="${user.lastName}">Last Name</td>
             <td th:text="${user.email}">E-mail</td>
             <td th:text="${user.role}">Role</td>
+            <td>
+                <a th:href="@{/delete/{id}(id=${user.id})}" class="btn btn-danger"
+                   onclick="return confirm('Are you sure you want to delete this user?');">Delete</a>
+            </td>
         </tr>
         </tbody>
     </table>
 
 
-    <!-- ======= Footer tools ======= -->
     <div class="footer-tools">
-        <div class="list-items">
-            Show
-            <select name="n-entries" id="n-entries" class="n-entries">
-                <option value="5">5</option>
-                <option value="10" selected>10</option>
-                <option value="15">15</option>
-            </select>
-            entries
-        </div>
-
         <div class="pages">
             <ul>
                 <li><span class="active">1</span></li>
@@ -132,31 +108,5 @@
         </div>
     </div>
 </div>
-<footer class="bg-dark text-center text-white">
-    <!-- Grid container -->
-    <div class="container p-4 pb-0">
-        <!-- Section: Social media -->
-        <section class="mb-4">
-            <!-- Facebook -->
-            <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button">Facebook</a>
-
-            <!-- Twitter -->
-            <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button">Twitter</a>
-
-            <!-- Google -->
-            <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button">Google</a>
-
-            <!-- Instagram -->
-            <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button">Instagram</a>
-
-            <!-- Linkedin -->
-            <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button">Linkedin</a>
-
-            <!-- Github -->
-            <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button">Github</a>
-        </section>
-
-    </div>
-</footer>
 </body>
 </html>
