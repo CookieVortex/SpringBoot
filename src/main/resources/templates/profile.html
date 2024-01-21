@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org"
+      xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml"
 >
 
 <head>
@@ -22,22 +22,15 @@
         <li class="nav-item">
             <a class="nav-link" th:href="@{/}">Home</a>
         </li>
-        <li class="nav-item" th:unless="${isAuthenticated}">
-            <a class="nav-link" th:href="@{/login}">Log In</a>
-        </li>
-        <li class="nav-item" th:unless="${isAuthenticated}">
-            <a class="nav-link" th:href="@{/register}">Sign Up</a>
-        </li>
         <li class="nav-item" th:if="${userRole == 'ADMIN'}">
             <a class="nav-link" th:href="@{/users}">Admin Panel</a>
         </li>
         <li class="nav-item" th:if="${isAuthenticated}">
-            <a class="nav-link" th:href="@{/logout}">Log Out</a>
-        </li>
         <li class="nav-item" th:if="${isAuthenticated}">
             <a class="nav-link" th:href="@{/profile}">Profile</a>
         </li>
-
+        <li sec:authorize="isAuthenticated()"><a class="nav-link" href="/logout">Logout</a></li>
+        </li>
     </ul>
 </header>
 
@@ -63,26 +56,31 @@
                     </div>
                     <div class="text-center">
                         <h3>
-                            <p th:text="${user.firstName + ' ' + user.lastName + ' @ ' + user.role}"></p>
-
+                            <p th:if="${user != null}"
+                               th:text="${user.firstName != null ? user.firstName : ''} + ' ' + ${user.lastName != null ? user.lastName : ''} + ' @ ' + ${user.role != null ? user.role : ''}"></p>
                         </h3>
                         <div class="h5 font-weight-300">
-                            <i class="ni location_pin mr-2"></i><td th:text="${user.country}"></td>, <td th:text="${user.city}"></td>
+                            <i class="ni location_pin mr-2"></i>
+                            <td th:text="${user != null && user.country != null ? user.country : ''}"></td>
+                            ,
+                            <td th:text="${user != null && user.city != null ? user.city : ''}"></td>
                         </div>
                         <div class="h5 mt-4">
-                            <i class="ni business_briefcase-24 mr-2"></i>Solution Manager - Creative Tim Officer
+                            <i class="ni business_briefcase-24 mr-2"></i>
+                            <p th:if="${user != null}" th:text="${user.role}"></p>
                         </div>
                         <div>
-                            <i class="ni education_hat mr-2"></i>University of Computer Science
+                            <i class="ni education_hat mr-2"></i>
+                            <span th:text="${user != null && user.birthday != null ? user.birthday : ''}"></span>
                         </div>
                         <hr class="my-4">
-                        <p th:text="'Registration date: ' + ${#dates.format(user.registrationDate, 'dd.MM.yyyy HH:mm')}" class="text-nowrap"></p>
+                        <p th:text="'Registration date: ' + ${user != null ? #dates.format(user.registrationDate, 'dd.MM.yyyy HH:mm') : ''}"
+                           class="text-nowrap"></p>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
-
 
 </html>
