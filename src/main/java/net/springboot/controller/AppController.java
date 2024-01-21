@@ -65,6 +65,13 @@ public class AppController {
 
         model.addAttribute("user", user);
 
+        boolean isAuthenticated = !auth.getName().equals("anonymousUser");
+
+
+        String userRole = userRoleService.getUserRole(email);
+        model.addAttribute("userRole", userRole);
+        model.addAttribute("isAuthenticated", isAuthenticated);
+
         return "profile";
     }
 
@@ -106,6 +113,11 @@ public class AppController {
 
             if ("ADMIN".equals(userRole)) {
                 List<User> listUsers = userRepo.findAll();
+                boolean isAuthenticated = !auth.getName().equals("anonymousUser");
+
+
+                model.addAttribute("userRole", userRole);
+                model.addAttribute("isAuthenticated", isAuthenticated);
                 model.addAttribute("listUsers", listUsers);
                 logger.info("User list page accessed");
                 return "users";
