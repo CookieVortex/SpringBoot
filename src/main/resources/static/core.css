@@ -554,4 +554,47 @@ footer {
     color: white;
 }
 
+.header-tools {
+    display: flex;
+    justify-content: space-between;
+}
+
+.search-form {
+    display: flex;
+    align-items: center;
+}
+
+.search-input {
+    margin-right: 10px;
+}
+
+button[type="submit"] {
+    background: #1FCE6D;
+    border: 0;
+    width: 150px;
+    height: 30px;
+    border-radius: 5px;
+    color: #fff;
+    font-size: 12px;
+    cursor: pointer;
+    transition: background .3s ease-in-out;
+}
+
+.custom-delete-btn {
+    background: #5b0707 !important;
+    border: 0 !important;
+    width: 100px !important;
+    height: 30px !important;
+    border-radius: 5px !important;
+    color: #fff !important;
+    font-size: 12px !important;
+    cursor: pointer !important;
+    transition: background .3s ease-in-out !important;
+}
+
+
+.custom-delete-btn:hover {
+    background: #7e0a0a !important;
+}
+
 

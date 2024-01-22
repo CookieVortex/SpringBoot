@@ -10,10 +10,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
 import java.util.List;
@@ -114,7 +111,7 @@ public class AppController {
     }
 
     @GetMapping("/users")
-    public String listUsers(Model model) {
+    public String listUsers(Model model, @RequestParam(name = "search", required = false) String search) {
         try {
             Authentication auth = SecurityContextHolder.getContext().getAuthentication();
             String userRole = userRoleService.getUserRole(auth.getName());
@@ -122,9 +119,14 @@ public class AppController {
             logger.info("User role: {}", userRole);
 
             if ("ADMIN".equals(userRole)) {
-                List<User> listUsers = userRepo.findAll();
+                List<User> listUsers;
                 boolean isAuthenticated = !auth.getName().equals("anonymousUser");
 
+                if (search != null && !search.isEmpty()) {
+                    listUsers = userRepo.findByFirstNameContainingOrLastNameContainingOrEmailContaining(search, search, search);
+                } else {
+                    listUsers = userRepo.findAll();
+                }
 
                 model.addAttribute("userRole", userRole);
                 model.addAttribute("isAuthenticated", isAuthenticated);

@@ -45,14 +45,16 @@
 <div class="datatable-container">
     <!-- ======= Header tools ======= -->
     <div class="header-tools">
-        <div class="tools">
-
-        </div>
+        <div class="tools"></div>
 
         <div class="search">
-            <input type="search" class="search-input" placeholder="Search..."/>
+            <form th:action="@{/users}" method="get" class="search-form">
+                <input type="search" class="search-input" placeholder="Search..." name="search"/>
+                <button type="submit">Search</button>
+            </form>
         </div>
     </div>
+
 
     <!-- ======= Table ======= -->
     <table class="datatable">
@@ -76,9 +78,10 @@
             <td th:text="${user.email}">E-mail</td>
             <td th:text="${user.role}">Role</td>
             <td>
-                <a th:href="@{/delete/{id}(id=${user.id})}" class="btn btn-danger"
+                <a th:href="@{/delete/{id}(id=${user.id})}" class="btn btn-danger custom-delete-btn"
                    onclick="return confirm('Are you sure you want to delete this user?');">Delete</a>
             </td>
+
         </tr>
         </tbody>
     </table>
