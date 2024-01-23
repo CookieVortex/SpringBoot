@@ -12,6 +12,6 @@ In progress...
 
 ![Screenshot_2](https://github.com/CookieVortex/SpringBoot/assets/24642100/5197a883-884e-4ac0-ad43-d1663f18bda0)
 
-![Screenshot_3](https://github.com/CookieVortex/SpringBoot/assets/24642100/98754cf8-7530-470b-9e41-10f8c53aff7f)
+![Screenshot_5](https://github.com/CookieVortex/SpringBoot/assets/24642100/e2df0996-3f58-4134-b867-648012449bdf)
 
 ![Screenshot_3](https://github.com/CookieVortex/SpringBoot/assets/24642100/83cc0e36-2b14-442a-a713-a0e394ab154f)
