@@ -45,8 +45,22 @@
 <div class="datatable-container">
     <!-- ======= Header tools ======= -->
     <div class="header-tools">
-        <div class="tools"></div>
+        <form th:action="@{/users}" method="get" class="sort-form">
+            <div class="sort-container">
+                <select id="sort" class="sortInput" name="sort">
+                    <option value="id">ID</option>
+                    <option value="firstName">First Name</option>
+                    <option value="lastName">Last Name</option>
+                    <option value="email">E-mail</option>
+                    <option value="role">Role</option>
+                </select>
+                <button type="submit">Apply Sort</button>
+                <button type="button" class="reset" onclick="resetSort()">Reset</button>
+            </div>
+        </form>
 
+
+        <div class="tools"></div>
         <div class="search">
             <form th:action="@{/users}" method="get" class="search-form">
                 <input type="search" class="search-input" placeholder="Search..." name="search"/>
@@ -111,5 +125,11 @@
         </div>
     </div>
 </div>
+<script>function resetSort() {
+    document.getElementById("sort").selectedIndex = 0;
+    document.querySelector('.sort-form').submit();
+}
+</script>
+
 </body>
 </html>

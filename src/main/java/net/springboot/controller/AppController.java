@@ -61,6 +61,8 @@ public class AppController {
         }
     }
 
+
+
     @GetMapping("/profile")
     public String showProfile(Model model) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
@@ -111,7 +113,9 @@ public class AppController {
     }
 
     @GetMapping("/users")
-    public String listUsers(Model model, @RequestParam(name = "search", required = false) String search) {
+    public String listUsers(Model model,
+                            @RequestParam(name = "search", required = false) String search,
+                            @RequestParam(name = "sort", required = false, defaultValue = "lastName") String sort) {
         try {
             Authentication auth = SecurityContextHolder.getContext().getAuthentication();
             String userRole = userRoleService.getUserRole(auth.getName());
@@ -119,18 +123,38 @@ public class AppController {
             logger.info("User role: {}", userRole);
 
             if ("ADMIN".equals(userRole)) {
-                List<User> listUsers;
                 boolean isAuthenticated = !auth.getName().equals("anonymousUser");
+
+                List<User> listUsers;
 
                 if (search != null && !search.isEmpty()) {
                     listUsers = userRepo.findByFirstNameContainingOrLastNameContainingOrEmailContaining(search, search, search);
                 } else {
-                    listUsers = userRepo.findAll();
+                    // В зависимости от значения параметра sort выполняйте сортировку
+                    switch (sort) {
+                        case "firstName":
+                            listUsers = userRepo.findAllByOrderByFirstNameAsc();
+                            break;
+                        case "lastName":
+                            listUsers = userRepo.findAllByOrderByLastNameAsc();
+                            break;
+                        case "email":
+                            listUsers = userRepo.findAllByOrderByEmailAsc();
+                            break;
+                        case "role":
+                            listUsers = userRepo.findAllByOrderByRoleAsc();
+                            break;
+                        default:
+                            // Если sort не указан или неизвестен, выполняйте какую-то другую логику по умолчанию
+                            listUsers = userRepo.findAllByOrderByLastNameAscFirstNameAsc();
+                            break;
+                    }
                 }
 
                 model.addAttribute("userRole", userRole);
                 model.addAttribute("isAuthenticated", isAuthenticated);
                 model.addAttribute("listUsers", listUsers);
+
                 logger.info("User list page accessed");
                 return "users";
             } else {
