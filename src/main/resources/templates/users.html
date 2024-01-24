@@ -75,7 +75,7 @@
         <thead>
         <tr>
 
-            <th>Status</th>
+            <th>ID</th>
             <th>First name</th>
             <th>Last name</th>
             <th>E-mail</th>
@@ -100,30 +100,25 @@
         </tbody>
     </table>
 
-
     <div class="footer-tools">
         <div class="pages">
             <ul>
-                <li><span class="active">1</span></li>
-                <li>
-                    <button>2</button>
+                <li th:class="${currentPage == 0 ? 'active' : ''}">
+                <span class="active" th:with="pageNumber=1">
+                    <a th:href="@{/users(page=${pageNumber - 1}, size=${size})}" class="active" th:text="${pageNumber}"></a>
+                </span>
                 </li>
-                <li>
-                    <button>3</button>
-                </li>
-                <li>
-                    <button>4</button>
-                </li>
-                <li><span>...</span></li>
-                <li>
-                    <button>9</button>
-                </li>
-                <li>
-                    <button>10</button>
+                <li th:each="i : ${#numbers.sequence(1, totalPages)}" th:unless="${i == 1}">
+                <span th:with="pageNumber=${i}" th:class="${currentPage == (i - 1) ? 'active' : ''}">
+                    <a th:href="@{/users(page=${i - 1}, size=${size})}" th:text="${pageNumber}"></a>
+                </span>
                 </li>
             </ul>
         </div>
     </div>
+
+
+
 </div>
 <script>function resetSort() {
     document.getElementById("sort").selectedIndex = 0;

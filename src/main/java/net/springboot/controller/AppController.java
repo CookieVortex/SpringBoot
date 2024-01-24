@@ -5,6 +5,9 @@ import net.springboot.repository.UserRepository;
 import net.springboot.service.UserRoleService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -62,7 +65,6 @@ public class AppController {
     }
 
 
-
     @GetMapping("/profile")
     public String showProfile(Model model) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
@@ -115,7 +117,8 @@ public class AppController {
     @GetMapping("/users")
     public String listUsers(Model model,
                             @RequestParam(name = "search", required = false) String search,
-                            @RequestParam(name = "sort", required = false, defaultValue = "lastName") String sort) {
+                            @RequestParam(name = "sort", required = false, defaultValue = "lastName") String sort,
+                            @RequestParam(name = "page", defaultValue = "0") int currentPage) {
         try {
             Authentication auth = SecurityContextHolder.getContext().getAuthentication();
             String userRole = userRoleService.getUserRole(auth.getName());
@@ -125,35 +128,37 @@ public class AppController {
             if ("ADMIN".equals(userRole)) {
                 boolean isAuthenticated = !auth.getName().equals("anonymousUser");
 
-                List<User> listUsers;
+                Page<User> userPage;
+                Pageable pageable = PageRequest.of(currentPage, 10);
 
                 if (search != null && !search.isEmpty()) {
-                    listUsers = userRepo.findByFirstNameContainingOrLastNameContainingOrEmailContaining(search, search, search);
+                    userPage = userRepo.findByFirstNameContainingOrLastNameContainingOrEmailContaining(search, search, search, pageable);
                 } else {
-                    // В зависимости от значения параметра sort выполняйте сортировку
                     switch (sort) {
                         case "firstName":
-                            listUsers = userRepo.findAllByOrderByFirstNameAsc();
+                            userPage = userRepo.findAllByOrderByFirstNameAsc(pageable);
                             break;
                         case "lastName":
-                            listUsers = userRepo.findAllByOrderByLastNameAsc();
+                            userPage = userRepo.findAllByOrderByLastNameAsc(pageable);
                             break;
                         case "email":
-                            listUsers = userRepo.findAllByOrderByEmailAsc();
+                            userPage = userRepo.findAllByOrderByEmailAsc(pageable);
                             break;
                         case "role":
-                            listUsers = userRepo.findAllByOrderByRoleAsc();
+                            userPage = userRepo.findAllByOrderByRoleAsc(pageable);
                             break;
                         default:
-                            // Если sort не указан или неизвестен, выполняйте какую-то другую логику по умолчанию
-                            listUsers = userRepo.findAllByOrderByLastNameAscFirstNameAsc();
+                            userPage = userRepo.findAllByOrderByLastNameAscFirstNameAsc(pageable);
                             break;
                     }
                 }
 
                 model.addAttribute("userRole", userRole);
                 model.addAttribute("isAuthenticated", isAuthenticated);
-                model.addAttribute("listUsers", listUsers);
+                model.addAttribute("listUsers", userPage.getContent());
+
+                model.addAttribute("currentPage", userPage.getNumber());
+                model.addAttribute("totalPages", userPage.getTotalPages());
 
                 logger.info("User list page accessed");
                 return "users";

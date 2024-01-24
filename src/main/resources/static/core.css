@@ -272,7 +272,7 @@ ul {
 
 .datatable-container .footer-tools .pages ul {
     margin: 0;
-    padding: 0;
+    padding: 10px;
     display: flex;
     align-items: baseline;
     justify-content: flex-end;
@@ -389,7 +389,7 @@ ul {
 
 a {
     color: #435160;
-    text-decoration: none;
+    text-decoration: none !important;
 }
 
 .login {
@@ -611,26 +611,25 @@ button[type="submit"] {
 }
 
 .sortInput {
-
+    font-weight: 700;
 }
-
-.sort-container {
-    display: flex;
-    align-items: center;
-}
-
 
 .sort-container button {
-    background: #1FCE6D;
+    background: #2a2a2a;
     border: 0;
     width: 150px;
-    height: 30px;
+    height: 32px;
     border-radius: 5px;
     color: #fff;
     font-size: 12px;
     cursor: pointer;
     transition: background .3s ease-in-out;
-    margin-right: 2px;
+    font-weight: 500;
+    margin-left: 2px;
+}
+
+.sort-container button:hover {
+    background: #383838;
 }
 
 .sort-form {

@@ -1,25 +1,28 @@
 package net.springboot.repository;
 
 import net.springboot.model.User;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
-
-import java.util.List;
 
 public interface UserRepository extends JpaRepository<User, Long> {
     @Query("SELECT u FROM User u WHERE u.email = ?1")
     User findByEmail(String email);
 
-    List<User> findByFirstNameContainingOrLastNameContainingOrEmailContaining(String firstName, String lastName, String email);
+    Page<User> findAll(Pageable pageable);
 
-    List<User> findAllByOrderByLastNameAscFirstNameAsc();
+    Page<User> findByFirstNameContainingOrLastNameContainingOrEmailContaining(
+            String firstName, String lastName, String email, Pageable pageable);
 
-    List<User> findAllByOrderByFirstNameAsc();
+    Page<User> findAllByOrderByLastNameAscFirstNameAsc(Pageable pageable);
 
-    List<User> findAllByOrderByLastNameAsc();
+    Page<User> findAllByOrderByFirstNameAsc(Pageable pageable);
 
-    List<User> findAllByOrderByEmailAsc();
+    Page<User> findAllByOrderByLastNameAsc(Pageable pageable);
 
-    List<User> findAllByOrderByRoleAsc();
+    Page<User> findAllByOrderByEmailAsc(Pageable pageable);
+
+    Page<User> findAllByOrderByRoleAsc(Pageable pageable);
 
 }
