@@ -8,15 +8,22 @@ import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.ConstraintViolation;
+import javax.validation.ConstraintViolationException;
+import javax.validation.Valid;
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 @Controller
 public class AppController {
@@ -99,8 +106,9 @@ public class AppController {
         logger.info("Processing registration for user: {}", user.getRole());
         return "redirect:/";
     }
+
     @PostMapping("/process_register")
-    public String processRegister(@ModelAttribute("user") User user) {
+    public String processRegister(@ModelAttribute("user") @Valid User user, BindingResult bindingResult, Model model) {
         try {
             BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
             String encodedPassword = passwordEncoder.encode(user.getPassword());
@@ -115,7 +123,8 @@ public class AppController {
             return "register_success";
         } catch (Exception e) {
             logger.error("An error occurred while processing user registration", e);
-            return "error";
+            model.addAttribute("error", "An error occurred while processing your registration");
+            return "index";
         }
     }
 

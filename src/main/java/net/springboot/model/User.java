@@ -3,7 +3,7 @@ package net.springboot.model;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.*;
 import java.util.Date;
 
 @Entity
@@ -27,16 +27,19 @@ public class User {
     @DateTimeFormat(pattern = "dd.MM.yyyy")
     private Date birthday;
 
+    @NotBlank(message = "Username must not be blank")
+    @Pattern(regexp = ".*@.*", message = "Invalid email address")
+    @Email(message = "Invalid email address")
     @Column(name = "username", nullable = false, unique = true, length = 45)
     private String email;
 
     @Column(name = "password", nullable = false, length = 64)
-    @Size(min = 5, message = "Password must be at least 5 characters long")
+    @Size(min = 5, message = "Password must be at least 6 characters long")
     private String password;
-
+    @NotEmpty(message = "First name must not be empty")
     @Column(name = "first_name", nullable = false, length = 20)
     private String firstName;
-
+    @NotEmpty(message = "Last name must not be empty")
     @Column(name = "last_name", nullable = false, length = 20)
     private String lastName;
 

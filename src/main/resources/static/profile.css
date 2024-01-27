@@ -1,11 +1,11 @@
 body {
-    background-color: #212121 !important;
+    background: linear-gradient(to left, rgb(28, 28, 28), #1e1e1e);
 }
 
 .nav {
     box-shadow: 0 1px 6px rgba(0, 0, 0, 0.2);
     padding-bottom: 35px;
-    background-color: #212121;
+    background: linear-gradient(to left, rgba(49, 49, 49, 0.34), #1e1e1e);
 }
 
 ul {
@@ -45,7 +45,7 @@ ul {
 }
 
 .card-profile {
-    background-color: #212121 !important;
+    background-color: #313131 !important;
     min-width: 600px !important;
     width: 100%;
     color: #fff !important;
