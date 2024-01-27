@@ -8,12 +8,11 @@
 
     <link rel="stylesheet" href="/static/core.css"/>
 
-    <!-- Используйте Bootstrap версии 5.3.2 -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <!-- Подключите jQuery перед Bootstrap JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"/>
 </head>
 
 <header class="header">
@@ -59,8 +58,13 @@
         <div class="modal-content" style="background-color: #181818;">
 
             <div class="modal-body">
-                <h1>Sign Up Form</h1>
-                <p class="login-motd">Fill in all fields to complete registration</p>
+                <h1 class="sign-up">Sign Up Form</h1>
+                <h1 class="login-mot">Fill in all fields to complete registration</h1>
+                <div class="social-icons">
+                    <i class="fab fa-facebook"></i>
+                    <i class="fab fa-twitter"></i>
+                    <i class="fab fa-instagram"></i>
+                </div>
                 <form th:action="@{/process_register}" method="post" th:object="${user}" class="reg-form"
                       onsubmit="return validatePasswords()">
 
@@ -106,6 +110,7 @@
                     <div class="form-group">
                         <input type="submit" class="reg-submit" value="Register">
                     </div>
+                    <p class="forgot-password">Forgot your password? <a href="#">Reset it</a></p>
                 </form>
             </div>
         </div>
@@ -118,11 +123,10 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content" style="background-color: #181818;">
             <div class="modal-body1">
-                <!-- Ваша существующая форма входа -->
 
                 <form th:action="@{/login}" method="post" class="login-form">
-                    <h1>Admin Panel</h1>
-                    <p class="login-motd">Please log in to gain access to the system.</p>
+                    <h1>Log In System</h1>
+                    <p class="login-mot">Please log in to gain access to the system.</p>
                     <div class="form-group">
                         <input id="username" class="login-username" type="text" name="email" placeholder="Username"/>
                         <label for="username">

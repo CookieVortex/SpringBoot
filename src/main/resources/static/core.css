@@ -134,7 +134,7 @@ ul {
 
 :root {
     --primary-color: white;
-    --secondary-color: rgba(38, 38, 38, 0.39);
+    --secondary-color: rgba(37, 37, 37, 0.39);
     --highlight-color: #1c1c1c;
 
     --dt-status-available-color: greenyellow;
@@ -194,7 +194,7 @@ h2 {
 }
 
 .datatable-container .header-tools .search {
-    width: 30%;
+    width: 40%;
 }
 
 .datatable-container .header-tools .search .search-input {
@@ -513,9 +513,9 @@ button[type="submit"] {
 }
 
 .custom-delete-btn {
-    background: rgba(73, 73, 73, 0.35) !important;
+    background: rgba(197, 8, 8, 0.35) !important;
     border: 0 !important;
-    width: 150px !important;
+    width: 100px !important;
     height: 30px !important;
     border-radius: 5px !important;
     color: #fff !important;
@@ -539,7 +539,7 @@ button[type="submit"] {
 }
 
 .sort-container button {
-    background: #2a2a2a;
+    background: #196b43;
     border: 0;
     width: 150px;
     height: 32px;
@@ -549,30 +549,48 @@ button[type="submit"] {
     cursor: pointer;
     transition: background .3s ease-in-out;
     font-weight: 500;
-    margin-left: 2px;
+    margin-left: 10px;
 }
 
 .sort-container button:hover {
-    background: #383838;
+    background: #1b9d5d;
 }
 
 .sort-form {
     width: 40%;
 }
 
-
-.modal-content {
-    margin-top: 200px;
+.forgot-password {
+    color: #797979;
+    margin-top: 30px;
+    font-size: 13px;
 }
 
-.form-columns {
-    column-count: 1;
+.modal-content {
+    margin-top: 10px;
+}
+
+.social-icons {
+    font-size: 30px;
+    margin-bottom: 20px;
+    background-color: rgba(56, 56, 56, 0);
+    padding: 10px;
+}
+
+.login-mot {
+    color: #bbbbbb;
+    font-size: 15px;
+    padding: 10px;
+}
+
+.sign-up {
+    color: #bbbbbb;
 }
 
 .reg-form .reg-username,
 .reg-form .reg-password {
     -webkit-appearance: none;
-    height: 55px;
+    height: 50px;
     border-radius: 4px;
     border: none;
     width: 100%;
@@ -581,8 +599,7 @@ button[type="submit"] {
     background-color: #212121;
     color: #bbbbbb;
     padding: 0 15px;
-    margin-bottom: 6px;
-
+    margin-bottom: 16px;
 }
 
 .reg-form .reg-submit {
@@ -596,7 +613,7 @@ button[type="submit"] {
     border: none;
     width: 100%;
     box-shadow: rgba(0, 0, 0, 0.1) 3px 3px 5px;
-    margin-top: 1%;
+    margin-top: 3%;
 }
 
 .reg-form .reg-submit:hover, .reg-form .reg-submit:active {
@@ -655,7 +672,7 @@ button[type="submit"] {
 
     border-radius: 0 4px 4px 0;
     margin-left: -2px;
-    margin-bottom: 6px;
+    margin-bottom: 16px;
 }
 
 .login-form label > svg {
