@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400');
+
 body, html {
     margin: 0;
     padding: 0;
@@ -12,29 +14,18 @@ main {
 }
 
 body {
-    background-color: #212121 !important;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    color: #fff;
+    background: linear-gradient(to left, rgb(28, 28, 28), #1e1e1e);
 }
-
 
 .nav {
     box-shadow: 0 1px 6px rgba(0, 0, 0, 0.2);
     padding-bottom: 35px;
+    background: linear-gradient(to left, rgba(49, 49, 49, 0.34), #1e1e1e);
 }
-
 
 h3 {
     padding-top: 5%;
     color: #fff !important;
-}
-
-.main-content {
-    margin-top: 150px;
-    display: flex;
-    justify-content: center;
 }
 
 
@@ -54,113 +45,184 @@ ul {
     padding-right: 20px;
 }
 
-.login-dark form {
-    min-width: 360px;
-    min-height: 600px;
-    background-color: #1e2833;
-    padding: 40px;
-    border-radius: 5px;
-    color: #6f7a85;
-    box-shadow: 3px 3px 4px rgba(0, 0, 0, 0.2);
-    margin-bottom: 140px;
-}
-
-
-.login-dark .illustration {
+.snip1135 {
+    font-size: 13px;
     text-align: center;
-    padding: 15px 0 20px;
-    font-size: 100px;
-    color: #2980ef;
+    text-transform: uppercase;
+    font-weight: 500;
 }
 
-.login-dark form .form-control {
-    background: none;
-    border: none;
-    border-bottom: 1px solid #434a52;
-    border-radius: 0;
-    box-shadow: none;
-    outline: none;
-    color: inherit;
+.snip1135 * {
+    box-sizing: border-box;
 }
 
-.login-dark form .btn-primary {
-    background: #214a80;
-    border: none;
-    border-radius: 4px;
-    padding: 11px;
-    box-shadow: none;
-    margin-top: 26px;
-    text-shadow: none;
-    outline: none;
-    transition: background-color 0.3s ease, transform 0.3s ease;
+.snip1135 li {
+    display: inline-block;
+    list-style: outside none none;
+    margin: 0 1.5em;
+    padding: 0;
 }
 
-
-.login-dark form .btn-primary:hover,
-.login-dark form .btn-primary:active {
-    background: #007bff;
-    outline: none;
-}
-
-.login-dark form .forgot {
-    display: block;
-    text-align: center;
-    font-size: 12px;
-    color: #6f7a85;
-    opacity: 0.9;
+.snip1135 a {
+    padding: 0.5em 0;
+    color: rgba(255, 255, 255, 0.5);
+    position: relative;
+    letter-spacing: 1px;
     text-decoration: none;
 }
 
-.login-dark form .forgot:hover, .login-dark form .forgot:active {
-    opacity: 1;
-    text-decoration: none;
+.snip1135 a:before,
+.snip1135 a:after {
+    position: absolute;
+    -webkit-transition: all 0.35s ease;
+    transition: all 0.35s ease;
 }
 
-.login-dark form .btn-primary:active {
-    transform: translateY(1px);
-}
-
-.login-dark form .btn-primary {
-    background: #214a80;
-    border: none;
-    border-radius: 4px;
-    padding: 11px;
-    box-shadow: none;
-    margin-top: 26px;
-    text-shadow: none;
-    outline: none;
-    transition: background-color 0.5s ease;
-}
-
-.login-dark form .btn-primary:hover,
-.login-dark form .btn-primary:active {
-    background: #004080; /* Новый цвет фона при наведении */
-    outline: none;
-}
-
-.login-dark form .btn-primary:hover::before {
-    transform: translateX(0);
-}
-
-.login-dark .alert-danger {
-    background-color: #dc3545;
-    color: #fff;
-    border: 1px solid #dc3545;
-    border-radius: 10px;
-    animation: shake 0.9s ease-in-out;
-}
-
-a {
-    color: #435160;
-    text-decoration: none;
-}
-
-footer {
-    position: fixed;
+.snip1135 a:before {
     bottom: 0;
-    width: 100%;
-    height: 100px;
-    background-color: #212121;
-    color: white;
+    display: block;
+    height: 3px;
+    width: 0;
+    content: "";
+    background-color: #2980b9;
 }
 
+.snip1135 a:after {
+    left: 0;
+    top: 0;
+    padding: 0.5em 0;
+    position: absolute;
+    content: attr(data-hover);
+    color: #ffffff;
+    white-space: nowrap;
+    max-width: 0;
+    overflow: hidden;
+}
+
+.snip1135 a:hover:before,
+.snip1135 .current a:before {
+    opacity: 1;
+    width: 100%;
+}
+
+.snip1135 a:hover:after,
+.snip1135 .current a:after {
+    max-width: 100%;
+}
+
+
+.form-group {
+    margin-top: 15px;
+}
+
+.login-form {
+    font-family: Arial, Helvetica, sans-serif;
+    width: 346px;
+    text-align: center;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    margin: auto;
+    position: absolute;
+}
+
+.login-form .login-username,
+.login-form .login-password,
+.login-form .login-submit {
+    -webkit-appearance: none;
+    height: 45px;
+    border-radius: 4px;
+    border: none;
+    width: 301px;
+    display: block;
+    box-shadow: rgba(0, 0, 0, 0.1) 3px 3px 5px;
+    font-size: 13px;
+    background-color: #212121;
+    color: #bbbbbb;
+}
+
+
+
+.login-form label {
+    height: 45px;
+    width: 45px;
+    background: #282828;
+    display: inline-block;
+    border-radius: 0 4px 4px 0;
+    margin-left: -2px;
+}
+
+.login-form label > svg {
+    width: 15px;
+    height: 100%;
+    text-align: center;
+    fill: #676767;
+    vertical-align: middle;
+}
+
+.login-form .login-username, .login-form .login-password {
+    padding: 0 20px 0 20px;
+    float: left;
+    border-radius: 4px 0 0 4px;
+    box-sizing: border-box;
+}
+
+.login-form .login-submit {
+    color: white;
+    background: #0d4985;
+    width: 100%;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.login-form .login-submit:hover, .login-form .login-submit:active {
+    background: #0c3f73;
+    outline: none;
+}
+
+.login-form input:focus, .login-form input:focus {
+    outline: 0;
+}
+
+.login-form h1, .login-form p, .login-form a {
+    color: white;
+    margin: 10px 0 10px 0;
+    text-decoration: none;
+}
+
+.login-form h1 {
+    font-weight: 100;
+    margin-bottom: 20px;
+    font-size: 42px;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.login-form .login-motd {
+    font-size: 14px;
+    width: 300px;
+    margin: 0 auto 20px auto;
+}
+
+.login-form .login-forgotpassword {
+    font-size: 12px;
+    margin-top: 18px;
+    display: block;
+}
+
+.login-form .login-forgotpassword:hover,
+.login-form .login-forgotpassword:active {
+    text-decoration: underline;
+}
+
+.domain-signature {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+}
+
+.domain-signature > a {
+    color: white;
+    text-decoration: none;
+    opacity: 0.2;
+}

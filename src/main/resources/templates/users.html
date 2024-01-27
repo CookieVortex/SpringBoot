@@ -25,7 +25,7 @@
             <a class="nav-link" th:href="@{/login}">Log In</a>
         </li>
         <li class="nav-item" th:unless="${isAuthenticated}">
-            <a class="nav-link" th:href="@{/register}">Sign Up</a>
+            <a class="nav-link" href="javascript:void(0);" onclick="openRegistrationModal()">Sign Up</a>
         </li>
         <li class="nav-item" th:if="${userRole == 'ADMIN'}">
             <a class="nav-link" th:href="@{/users}">Admin Panel</a>
@@ -40,11 +40,13 @@
 </header>
 
 <body>
-
+<h3>Manage site users</h3>
 <br>
 <div class="datatable-container">
+
     <!-- ======= Header tools ======= -->
     <div class="header-tools">
+
         <form th:action="@{/users}" method="get" class="sort-form">
             <div class="sort-container">
                 <select id="sort" class="sortInput" name="sort">
@@ -124,6 +126,11 @@
     document.getElementById("sort").selectedIndex = 0;
     document.querySelector('.sort-form').submit();
 }
+</script>
+<script>
+    function openRegistrationModal() {
+        $('#registrationModal').modal('show');
+    }
 </script>
 
 </body>

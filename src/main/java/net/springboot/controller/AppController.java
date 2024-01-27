@@ -42,7 +42,7 @@ public class AppController {
     }
 
     @GetMapping("")
-    public String viewHomePage(Model model) {
+    public String viewHomePage(Model model, @ModelAttribute("user") User user) {
         try {
             List<User> listUsers = userRepo.findAll();
             model.addAttribute("listUsers", listUsers);
@@ -94,6 +94,11 @@ public class AppController {
         return "signup_form";
     }
 
+    @PostMapping("/register")
+    public String processRegistration(@ModelAttribute User user) {
+        logger.info("Processing registration for user: {}", user.getRole());
+        return "redirect:/";
+    }
     @PostMapping("/process_register")
     public String processRegister(@ModelAttribute("user") User user) {
         try {
@@ -175,8 +180,18 @@ public class AppController {
 
     @GetMapping("/login")
     public String login() {
-        logger.info("Login page accessed");
         return "login";
+    }
+
+    @PostMapping("/login")
+    public String loginSubmit(@RequestParam String username, @RequestParam String password, Model model) {
+
+        if ("validUsername".equals(username) && "validPassword".equals(password)) {
+            return "redirect:/";
+        } else {
+            model.addAttribute("error", true);
+            return "login";
+        }
     }
 }
 

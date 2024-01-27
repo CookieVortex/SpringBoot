@@ -29,7 +29,7 @@
             <a class="nav-link" th:href="@{/login}">Log In</a>
         </li>
         <li class="nav-item" th:unless="${isAuthenticated}">
-            <a class="nav-link" th:href="@{/register}">Sign Up</a>
+            <a class="nav-link" href="javascript:void(0);" onclick="openRegistrationModal()">Sign Up</a>
         </li>
         <li class="nav-item" th:if="${userRole == 'ADMIN'}">
             <a class="nav-link" th:href="@{/users}">Admin Panel</a>
@@ -92,31 +92,10 @@
     </div>
 
 </div>
-<footer class="bg-dark text-center text-white">
-    <!-- Grid container -->
-    <div class="container p-4 pb-0">
-        <!-- Section: Social media -->
-        <section class="mb-4">
-            <!-- Facebook -->
-            <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button">Facebook</a>
+<script>
+    function openRegistrationModal() {
+        $('#registrationModal').modal('show');
+    }
+</script>
 
-            <!-- Twitter -->
-            <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button">Twitter</a>
-
-            <!-- Google -->
-            <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button">Google</a>
-
-            <!-- Instagram -->
-            <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button">Instagram</a>
-
-            <!-- Linkedin -->
-            <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button">Linkedin</a>
-
-            <!-- Github -->
-            <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button">Github</a>
-        </section>
-
-    </div>
-
-</footer>
 </html>

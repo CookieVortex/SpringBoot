@@ -1,0 +1,95 @@
+@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400');
+
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
+body {
+    background: linear-gradient(to left, rgb(28, 28, 28), #1e1e1e);
+}
+
+
+.nav {
+    box-shadow: 0 1px 6px rgba(0, 0, 0, 0.2);
+    padding-bottom: 35px;
+    background: linear-gradient(to left, rgba(49, 49, 49, 0.34), #1e1e1e);
+}
+
+h3 {
+    padding-top: 5%;
+    color: #fff !important;
+}
+
+
+ul {
+    padding-top: 30px;
+    padding-right: 20px;
+}
+
+.snip1135 {
+    font-size: 13px;
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: 500;
+}
+
+.snip1135 * {
+    box-sizing: border-box;
+}
+
+.snip1135 li {
+    display: inline-block;
+    list-style: outside none none;
+    margin: 0 1.5em;
+    padding: 0;
+}
+
+.snip1135 a {
+    padding: 0.5em 0;
+    color: rgba(255, 255, 255, 0.5);
+    position: relative;
+    letter-spacing: 1px;
+    text-decoration: none;
+}
+
+.snip1135 a:before,
+.snip1135 a:after {
+    position: absolute;
+    -webkit-transition: all 0.35s ease;
+    transition: all 0.35s ease;
+}
+
+.snip1135 a:before {
+    bottom: 0;
+    display: block;
+    height: 3px;
+    width: 0;
+    content: "";
+    background-color: #2980b9;
+}
+
+.snip1135 a:after {
+    left: 0;
+    top: 0;
+    padding: 0.5em 0;
+    position: absolute;
+    content: attr(data-hover);
+    color: #ffffff;
+    white-space: nowrap;
+    max-width: 0;
+    overflow: hidden;
+}
+
+.snip1135 a:hover:before,
+.snip1135 .current a:before {
+    opacity: 1;
+    width: 100%;
+}
+
+.snip1135 a:hover:after,
+.snip1135 .current a:after {
+    max-width: 100%;
+}
+

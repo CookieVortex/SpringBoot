@@ -8,7 +8,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
 </head>
 
@@ -23,7 +24,7 @@
             <a class="nav-link" th:href="@{/login}">Log In</a>
         </li>
         <li class="nav-item" th:unless="${isAuthenticated}">
-            <a class="nav-link" th:href="@{/register}">Sign Up</a>
+            <a class="nav-link" href="javascript:void(0);" onclick="openRegistrationModal()">Sign Up</a>
         </li>
         <li class="nav-item" th:if="${userRole == 'ADMIN'}">
             <a class="nav-link" th:href="@{/users}">Admin Panel</a>
@@ -37,68 +38,52 @@
     </ul>
 </header>
 
-<main class="container d-flex justify-content-center align-items-center flex-grow-1">
-
-    <div class="login-dark">
-        <div class="login-dark">
-            <div th:if="${param.error}" class="alert alert-danger">
-                Invalid email or password. Please try again.
-            </div>
-            <form th:action="@{/j_spring_security_check}" method="post" class="login-form">
-                <h2>Sign In</h2>
-                <div class="illustration"><i class="icon ion-ios-locked-outline"></i></div>
-                <div class="form-group"><input class="form-control" type="email" name="email" placeholder="Email"></div>
-                <div class="form-group"><input class="form-control" type="password" name="password" placeholder="Password">
-                </div>
-                <div class="form-group">
-                    <button class="btn btn-primary btn-block btn-slide" type="submit">Log In</button>
-                </div>
-
-                <div class="form-group form-switch">
-                    <input class="form-check-input" type="checkbox" id="remember-me" name="remember-me">
-                    <label class="form-check-label" for="remember-me">Remember me</label>
-                </div>
-                <a href="#" class="forgot">Forgot your email or password?</a>
-            </form>
-        </div>
+<form th:action="@{/login}" method="post" class="login-form">
+    <h1>Admin Panel</h1>
+    <p class="login-motd">Please log in to gain access to the system.</p>
+    <div class="form-group">
+        <input id="username" class="login-username" type="text" name="email" placeholder="Username"/>
+        <label for="username">
+            <svg>
+                <use xlink:href="#user"/>
+            </svg>
+        </label>
     </div>
+    <div class="form-group">
+        <input id="password" class="login-password" type="password" name="password" placeholder="Password"/>
+        <label for="password">
+            <svg>
+                <use xlink:href="#padlock"/>
+            </svg>
+        </label>
+    </div>
+    <div class="form-group">
+        <button class="login-submit" type="submit">Log in</button>
+    </div>
+    </div>
+    <a href="#" class="login-forgotpassword">Forgot Password?</a>
+    </div>
+</form>
 
+<svg>
+    <symbol id="user" viewBox="0 0 1792 1792">
+        <path d="M1329 784q47 14 89.5 38t89 73 79.5 115.5 55 172 22 236.5q0 154-100 263.5t-241 109.5h-854q-141 0-241-109.5t-100-263.5q0-131 22-236.5t55-172 79.5-115.5 89-73 89.5-38q-79-125-79-272 0-104 40.5-198.5t109.5-163.5 163.5-109.5 198.5-40.5 198.5 40.5 163.5 109.5 109.5 163.5 40.5 198.5q0 147-79 272zm-433-656q-159 0-271.5 112.5t-112.5 271.5 112.5 271.5 271.5 112.5 271.5-112.5 112.5-271.5-112.5-271.5-271.5-112.5zm427 1536q88 0 150.5-71.5t62.5-173.5q0-239-78.5-377t-225.5-145q-145 127-336 127t-336-127q-147 7-225.5 145t-78.5 377q0 102 62.5 173.5t150.5 71.5h854z "/>
+    </symbol>
+    <symbol id="padlock" viewBox="0 0 1792 1792">
+        <path d="M640 768h512V576q0-106-75-181t-181-75-181 75-75 181v192zm832 96v576q0 40-28 68t-68 28H416q-40 0-68-28t-28-68V864q0-40 28-68t68-28h32V576q0-184 132-316t316-132 316 132 132 316v192h32q40 0 68 28t28 68z"/>
+    </symbol>
+</svg>
 
-</main>
-
-    <footer class="bg-dark text-center text-white">
-        <!-- Grid container -->
-        <div class="container p-4 pb-0">
-            <!-- Section: Social media -->
-            <section class="mb-4">
-                <!-- Facebook -->
-                <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button">Facebook</a>
-
-                <!-- Twitter -->
-                <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button">Twitter</a>
-
-                <!-- Google -->
-                <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button">Google</a>
-
-                <!-- Instagram -->
-                <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button">Instagram</a>
-
-                <!-- Linkedin -->
-                <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button">Linkedin</a>
-
-                <!-- Github -->
-                <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button">Github</a>
-            </section>
-
-
-            <!-- Section: Social media -->
-        </div>
-
-    </footer>
-
+<div class="domain-signature">
+    <a href="https://localhost" target="_blank" rel="noopener noreferrer">Cookie Vortex - https://localhost</a>
+</div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.bundle.min.js"></script>
+<script>
+    function openRegistrationModal() {
+        $('#registrationModal').modal('show');
+    }
+</script>
 
 </body>
 </html>
-
