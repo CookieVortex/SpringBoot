@@ -27,9 +27,6 @@ public class User {
     @DateTimeFormat(pattern = "dd.MM.yyyy")
     private Date birthday;
 
-    @NotBlank(message = "Username must not be blank")
-    @Pattern(regexp = ".*@.*", message = "Invalid email address")
-    @Email(message = "Invalid email address")
     @Column(name = "username", nullable = false, unique = true, length = 45)
     private String email;
 

@@ -103,9 +103,7 @@
 <div class="modal fade" id="registrationModal" tabindex="-1" role="dialog" aria-labelledby="registrationModalLabel"
      aria-hidden="true">
     <div class="modal-dialog" role="document">
-
         <div class="modal-content" style="background-color: #181818;">
-
             <div class="modal-body">
                 <h1 class="sign-up">Sign Up Form</h1>
                 <h1 class="login-mot">Fill in all fields to complete registration</h1>
@@ -129,28 +127,39 @@
                 </div>
                 <form th:action="@{/process_register}" method="post" th:object="${user}" class="reg-form"
                       onsubmit="return validateRegistrationForm()">
-
+                    <div id="emailError" class="error-message"></div>
                     <div class="form-columns">
                         <div class="form-column">
+
+
                             <div class="form-group">
                                 <input id="regEmail" class="reg-username" type="text" name="email"
-                                       placeholder="E-Mail Address" th:field="*{email}" required/>
+                                       placeholder="E-Mail Address" th:field="*{email}"
+                                       pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}" required
+                                       oninput="validateEmailInput(this)"/>
+
                             </div>
+
+
                         </div>
+
 
                         <div class="form-column">
                             <div class="form-group">
                                 <input id="firstName" class="reg-username" type="text" name="firstName"
                                        placeholder="First Name" th:field="*{firstName}" required minlength="4"
-                                       maxlength="8" size="10"/>
+                                       maxlength="8" size="10" oninput="validateNameInput(this)"/>
+                                <div id="firstNameError" class="error-message"></div>
                             </div>
                         </div>
+
 
                         <div class="form-column">
                             <div class="form-group">
                                 <input id="lastName" class="reg-username" type="text" name="lastName"
                                        placeholder="Last Name" th:field="*{lastName}" required minlength="4"
-                                       maxlength="8" size="10"/>
+                                       maxlength="8" size="10" oninput="validateNameInput(this)"/>
+                                <div id="lastNameError" class="error-message"></div>
                             </div>
                         </div>
 
@@ -161,7 +170,6 @@
                                        placeholder="Password" th:field="*{password}" maxlength="255" minlength="6"
                                        oninput="validatePasswords()" required/>
                             </div>
-
                             <div class="form-group">
                                 <input id="repeatPassword" class="reg-password" type="password"
                                        name="repeatPassword" placeholder="Repeat Password"
@@ -170,10 +178,8 @@
                             </div>
                         </div>
                     </div>
-
                     <div class="form-group">
                         <input type="submit" class="reg-submit" value="Register">
-
                     </div>
                     <p class="forgot-password">Forgot your password? <a href="#">Reset it</a></p>
                 </form>
@@ -182,25 +188,98 @@
     </div>
 </div>
 
+
 <script>
     function openRegistrationModal() {
         $('#registrationModal').modal('show');
     }
 </script>
-<script>
-    function validateRegistrationForm() {
-        const email = document.forms.RegForm.email.value;
 
-        if (email === "" || !email.includes('@')) {
-            window.alert("Please enter a valid email address.");
-            document.forms.RegForm.email.focus();
+<script>
+    function openRegistrationModal() {
+        $('#registrationModal').modal('show');
+    }
+
+    function validateEmail(email) {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return emailRegex.test(email);
+    }
+
+    const emailInput = document.getElementById('regEmail');
+    const emailError = document.getElementById('emailError');
+
+    function validateEmailInput(input) {
+        const emailValue = input.value;
+        if (validateEmail(emailValue)) {
+            input.style.border = '';
+            emailError.textContent = '';
+        } else {
+            input.style.border = '1px solid red';
+        }
+    }
+
+    function validateRegistrationForm() {
+        const emailInput = document.getElementById('regEmail');
+        const email = emailInput.value;
+
+        if (email === "" || !validateEmail(email)) {
+
+            emailInput.focus();
+            emailInput.style.borderColor = 'red';
+            return false;
+        } else {
+            emailInput.style.borderColor = '';
+        }
+        return true;
+    }
+
+    function validateEmail(email) {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return emailRegex.test(email);
+    }
+
+    function validateNameInput(input) {
+        const nameValue = input.value.trim();
+        const nameError = document.getElementById(input.id + 'Error');
+
+        if (/^[a-zA-Zа-яА-Я]+$/.test(nameValue)) {
+            input.style.border = '';
+            nameError.textContent = '';
+        } else {
+            input.style.border = '1px solid red';
+        }
+    }
+
+
+    function validateRegistrationForm() {
+        const emailInput = document.getElementById('regEmail');
+        const firstNameInput = document.getElementById('firstName');
+        const lastNameInput = document.getElementById('lastName');
+
+        if (!validateEmail(emailInput.value)) {
+
+            emailInput.focus();
+            emailInput.style.border = '1px solid red';
+            return false;
+        } else {
+            emailInput.style.border = '';
+        }
+
+        if (!validateName(firstNameInput.value, 'firstName')) {
+            return false;
+        }
+
+        if (!validateName(lastNameInput.value, 'lastName')) {
             return false;
         }
 
         return true;
     }
 
+
 </script>
+
+
 </body>
 
 </html>
