@@ -1,9 +1,52 @@
 # SpringBoot
-Spring application that implements a list of features
-Possibility of registration
-Possibility of login, authentication
-User rights (Admin, user)
-The user cannot view some areas of the site
+
+# ProjectZomboid Database Panel
+
+## Overview
+
+ProjectZomboid Database Panel is a web application designed to manage user information and provide administrative functionality.
+
+## Functionalities
+
+### 1. User Deletion
+   - Deletes a user based on the provided ID.
+
+### 2. Home Page
+   - Displays a home page with a list of users, their roles, and authentication status.
+
+### 3. Profile Page
+   - Displays the profile of the currently authenticated user.
+
+### 4. Registration Form
+   - Displays a registration form for new users.
+
+### 5. Registration Processing
+   - Processes registration data, encodes the password, and saves the new user.
+
+### 6. User List Page
+   - Displays a list of users with search and sorting options for administrators.
+
+### 7. Login Page
+   - Displays a login page for users.
+
+### 8. Login Processing
+   - Handles login requests, checking the validity of the username and password.
+
+## Usage
+
+To use the application, follow these steps:
+
+1. Clone the repository.
+2. Configure the necessary dependencies.
+3. Run the application.
+
+## Contributors
+
+
+## License
+
+This project is licensed under the [License Name] - see the [LICENSE.md](LICENSE.md) file for details.
+
 
 In progress...
 
