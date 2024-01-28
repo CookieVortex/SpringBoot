@@ -3,12 +3,15 @@ package net.springboot.model;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
-import javax.validation.constraints.*;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 import java.util.Date;
 
 @Entity
 @Table(schema = "dev", name = "users")
 public class User {
+
+    private boolean banned;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -139,5 +142,13 @@ public class User {
 
     public void setRepeatPassword(String repeatPassword) {
         this.repeatPassword = repeatPassword;
+    }
+
+    public boolean isBanned() {
+        return banned;
+    }
+
+    public void setBanned(boolean banned) {
+        this.banned = banned;
     }
 }

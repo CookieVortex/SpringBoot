@@ -585,6 +585,7 @@ button[type="submit"] {
 
 .sign-up {
     color: #bbbbbb;
+    padding-top: 30px;
 }
 
 .reg-form .reg-username,
@@ -648,6 +649,7 @@ button[type="submit"] {
     width: 346px;
     text-align: center;
 }
+
 
 .login-form .login-username,
 .login-form .login-password,

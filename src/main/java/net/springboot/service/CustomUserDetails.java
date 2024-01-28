@@ -1,7 +1,6 @@
 package net.springboot.service;
 
 import net.springboot.model.User;
-import net.springboot.repository.UserRepository;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 

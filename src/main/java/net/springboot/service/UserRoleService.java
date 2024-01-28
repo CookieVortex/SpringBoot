@@ -19,4 +19,25 @@ public class UserRoleService {
         User user = userRepository.findByEmail(email);
         return (user != null) ? user.getRole() : null;
     }
+
+    public void banUser(String email) {
+        User user = userRepository.findByEmail(email);
+        if (user != null) {
+            user.setBanned(true);
+            userRepository.save(user);
+        }
+    }
+
+    public void unbanUser(String email) {
+        User user = userRepository.findByEmail(email);
+        if (user != null) {
+            user.setBanned(false);
+            userRepository.save(user);
+        }
+    }
+
+    public boolean isUserBanned(String email) {
+        User user = userRepository.findByEmail(email);
+        return user != null && user.isBanned();
+    }
 }

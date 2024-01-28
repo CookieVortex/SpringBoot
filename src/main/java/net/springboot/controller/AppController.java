@@ -2,6 +2,7 @@ package net.springboot.controller;
 
 import net.springboot.model.User;
 import net.springboot.repository.UserRepository;
+import net.springboot.service.BannedUserException;
 import net.springboot.service.UserRoleService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -68,23 +69,31 @@ public class AppController {
 
     @GetMapping("/profile")
     public String showProfile(Model model) {
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        String email = auth.getName();
+        try {
+            Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+            String email = auth.getName();
 
-        logger.info("Profile page accessed for user: {}", email);
+            if (userRoleService.isUserBanned(email)) {
+                throw new BannedUserException("User is banned");
+            }
 
-        User user = userRepo.findByEmail(email);
+            logger.info("Profile page accessed for user: {}", email);
 
-        model.addAttribute("user", user);
+            User user = userRepo.findByEmail(email);
 
-        boolean isAuthenticated = !auth.getName().equals("anonymousUser");
+            model.addAttribute("user", user);
 
+            boolean isAuthenticated = !auth.getName().equals("anonymousUser");
 
-        String userRole = userRoleService.getUserRole(email);
-        model.addAttribute("userRole", userRole);
-        model.addAttribute("isAuthenticated", isAuthenticated);
+            String userRole = userRoleService.getUserRole(email);
+            model.addAttribute("userRole", userRole);
+            model.addAttribute("isAuthenticated", isAuthenticated);
 
-        return "profile";
+            return "profile";
+        } catch (Exception e) {
+            logger.error("Exception in showProfile", e);
+            return "error";
+        }
     }
 
 
