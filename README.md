@@ -32,6 +32,10 @@ ProjectZomboid Database Panel is a web application designed to manage user infor
 ### 8. Login Processing
    - Handles login requests, checking the validity of the username and password.
 
+### 9. Ban User System
+   - Possibility to ban a site user.
+
+
 ## Usage
 
 To use the application, follow these steps:
@@ -56,4 +60,12 @@ In progress...
 ![Screenshot_3](https://github.com/CookieVortex/SpringBoot/assets/24642100/862b13f0-5561-4982-bc8e-f0313b2b8bed)
 ![Screenshot_4](https://github.com/CookieVortex/SpringBoot/assets/24642100/51ae109a-8eea-46ec-88ce-6af5566a6007)
 ![Screenshot_5](https://github.com/CookieVortex/SpringBoot/assets/24642100/70ae90d7-fab9-4bda-bdb0-b77997f55142)
+
+#2024-01-29 20:28:47.522  INFO 11220 --- [nio-8080-exec-4] net.springboot.controller.AppController  : User max@max.max is banned
+
+![Screenshot_7](https://github.com/CookieVortex/SpringBoot/assets/24642100/5bd6f13a-b91f-4165-bd78-5c167e25fe48)
+![Screenshot_6](https://github.com/CookieVortex/SpringBoot/assets/24642100/d2819015-3125-4296-969d-6c0fe98021da)
+
+
+
 
