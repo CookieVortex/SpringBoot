@@ -13,9 +13,9 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import java.util.Collection;
+import java.util.Collections;
 import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
 
 @Service
 public class CustomUserDetailsService implements UserDetailsService {
@@ -38,32 +38,14 @@ public class CustomUserDetailsService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-        try {
-            User user = userRepository.findByEmail(email);
-
-            if (user == null) {
-                throw new UsernameNotFoundException("User not found with email: " + email);
-            }
-
-            if (user.isBanned()) {
-                logger.info("User {} is banned", email);
-                throw new BannedUserException("User is banned");
-            }
-
-            Set<GrantedAuthority> authorities = new HashSet<>();
-            authorities.add(new SimpleGrantedAuthority(user.getRole()));
-
-            return new org.springframework.security.core.userdetails.User(
-                    user.getEmail(),
-                    user.getPassword(),
-                    authorities
-            );
-        } catch (BannedUserException e) {
-            throw new UsernameNotFoundException("User is banned", e);
-        } catch (Exception e) {
-            logger.error("Exception in loadUserByUsername", e);
+        User user = userRepository.findByEmail(email);
+        if (user == null) {
             throw new UsernameNotFoundException("User not found with email: " + email);
         }
+        Collection<? extends GrantedAuthority> authorities = Collections.singleton(new SimpleGrantedAuthority("ROLE_USER"));
+
+        return new CustomUserDetails(user, authorities);
     }
+
 }
 

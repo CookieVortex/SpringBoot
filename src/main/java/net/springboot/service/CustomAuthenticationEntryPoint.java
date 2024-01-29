@@ -13,9 +13,10 @@ public class CustomAuthenticationEntryPoint implements AuthenticationEntryPoint 
     @Override
     public void commence(HttpServletRequest request, HttpServletResponse response, AuthenticationException authException) throws IOException, ServletException {
         if (authException instanceof BannedUserException) {
-            response.sendError(HttpServletResponse.SC_FORBIDDEN, "User is banned");
+            response.sendError(HttpServletResponse.SC_NOT_FOUND, "User is banned");
         } else {
             response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Authentication failed");
         }
     }
 }
+

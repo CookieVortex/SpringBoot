@@ -40,22 +40,23 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.csrf().disable()
                 .authorizeRequests()
                 .antMatchers("/process_register").permitAll()
-                .antMatchers("/users/***").hasAnyRole("ADMIN")
+                .antMatchers("/users/***").hasRole("ADMIN")
                 .antMatchers("/profile").authenticated()
+                .antMatchers("/block/**").hasRole("ADMIN")
                 .anyRequest().permitAll()
                 .and()
                 .formLogin()
                 .loginPage("/login")
                 .loginProcessingUrl("/login")
-                .failureUrl("/login?error")
                 .usernameParameter("email")
                 .permitAll()
                 .and()
                 .logout()
                 .permitAll()
                 .and()
-                .exceptionHandling().accessDeniedPage("/access-denied")
+                .exceptionHandling().accessDeniedPage("/error")
                 .and()
                 .userDetailsService(customUserDetailsService);
     }
+
 }

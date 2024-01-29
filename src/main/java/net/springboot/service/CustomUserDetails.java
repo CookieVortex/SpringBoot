@@ -9,7 +9,7 @@ import java.util.Collection;
 public class CustomUserDetails implements UserDetails {
 
     private final User user;
-
+    private final Collection<? extends GrantedAuthority> authorities;
 
     public CustomUserDetails(User user, Collection<? extends GrantedAuthority> authorities) {
         this.user = user;
@@ -20,8 +20,6 @@ public class CustomUserDetails implements UserDetails {
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return authorities;
     }
-
-    private final Collection<? extends GrantedAuthority> authorities;
 
     @Override
     public String getPassword() {

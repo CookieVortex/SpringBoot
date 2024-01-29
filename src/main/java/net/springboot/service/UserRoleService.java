@@ -15,6 +15,15 @@ public class UserRoleService {
         this.userRepository = userRepository;
     }
 
+    public void blockUser(String email) {
+        User user = userRepository.findByEmail(email);
+        if (user != null) {
+            user.setBanned(true);
+            userRepository.save(user);
+            System.out.println("User blocked: " + email);
+        }
+    }
+
     public String getUserRole(String email) {
         User user = userRepository.findByEmail(email);
         return (user != null) ? user.getRole() : null;
