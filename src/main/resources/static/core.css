@@ -513,7 +513,7 @@ button[type="submit"] {
 }
 
 .custom-delete-btn {
-    background: rgba(197, 8, 8, 0.35) !important;
+    background: rgb(86, 30, 30) !important;
     border: 0 !important;
     width: 100px !important;
     height: 30px !important;
@@ -522,11 +522,12 @@ button[type="submit"] {
     font-size: 12px !important;
     cursor: pointer !important;
     transition: background .3s ease-in-out !important;
+    margin-left: -25px;
 }
 
 
 .custom-delete-btn:hover {
-    background: #7e0a0a !important;
+    background: rgb(131, 19, 19) !important;
 }
 
 .sort-container {
@@ -539,12 +540,12 @@ button[type="submit"] {
 }
 
 .sort-container button {
-    background: #196b43;
-    border: 0;
+    background-color: rgba(12, 63, 115, 0);
+    border: 1px solid #313131;
     width: 150px;
     height: 32px;
     border-radius: 5px;
-    color: #fff;
+    color: #bbbbbb;
     font-size: 12px;
     cursor: pointer;
     transition: background .3s ease-in-out;
@@ -553,11 +554,11 @@ button[type="submit"] {
 }
 
 .sort-container button:hover {
-    background: #1b9d5d;
+    border: 1px solid #0b5caf;
 }
 
 .sort-form {
-    width: 40%;
+    width: 60%;
 }
 
 .forgot-password {
@@ -723,3 +724,17 @@ button[type="submit"] {
     color: #fd0000;
 
 }
+
+.banned-text {
+    background-color: #212121;
+    color: #ff0000;
+    font-weight: bold;
+}
+
+.active-text {
+    background-color: #212121;
+    color: #22ff00;
+    font-weight: bold;
+}
+
+
