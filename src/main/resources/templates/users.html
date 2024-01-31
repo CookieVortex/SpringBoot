@@ -83,12 +83,12 @@
             <th>E-mail</th>
             <th>Role</th>
             <th>Action</th>
+            <th>Registration Date</th>
         </tr>
         </thead>
 
         <tbody>
-
-        <tr th:each="user: ${listUsers}">
+        <tr th:each="user : ${listUsers}">
             <td th:text="${user.banned ? 'Banned' : 'Active'}"
                 th:class="${user.banned ? 'banned-text' : 'active-text'}"></td>
             <td th:text="${user.firstName}">First Name</td>
@@ -100,14 +100,17 @@
                    onclick="return confirm('Are you sure you want to delete this user?');">Delete</a>
                 <a th:href="@{/ban/{id}(id=${user.id})}" class="btn btn-warning custom-ban-btn"
                    onclick="return confirm('Are you sure you want to BAN this user?');">Ban User</a>
-                <a th:href="@{/ban/{id}(id=${user.id})}" class="btn btn-warning custom-unban-btn"
-                   onclick="return confirm('Are you sure you want to BAN this user?');">Unban User</a>
+                <a th:href="@{/unban/{id}(id=${user.id})}" class="btn btn-warning custom-unban-btn"
+                   onclick="return confirm('Are you sure you want to UNBAN this user?');">Unban User</a>
             </td>
-
+            <td>
+                <p th:text="${user != null ? #dates.format(user.registrationDate, 'dd.MM.yyyy HH:mm') : ''}"
+                   class="text-nowrap"></p>
+            </td>
         </tr>
-
-
         </tbody>
+
+
     </table>
 
     <div class="footer-tools">

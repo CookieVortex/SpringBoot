@@ -562,8 +562,9 @@ button[type="submit"] {
     background: rgb(35, 152, 22) !important;
 }
 
-
-
+.text-nowrap {
+    font-weight: bold;
+}
 
 .sort-container {
     display: flex;
@@ -575,7 +576,7 @@ button[type="submit"] {
 }
 
 .sort-container button {
-    background-color: rgba(12, 63, 115, 0);
+    background-color: rgba(8, 80, 141, 0.97);
     border: 1px solid #313131;
     width: 150px;
     height: 32px;
@@ -589,7 +590,7 @@ button[type="submit"] {
 }
 
 .sort-container button:hover {
-    border: 1px solid #0b5caf;
+    background-color: rgba(8, 105, 187, 0.97);
 }
 
 .sort-form {

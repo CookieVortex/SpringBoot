@@ -19,6 +19,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -85,6 +86,20 @@ public class AppController {
             if (optionalUser.isPresent()) {
                 User user = optionalUser.get();
                 userRoleService.banUser(user.getEmail());
+            }
+            return "redirect:/users";
+        } catch (Exception e) {
+            return "error";
+        }
+    }
+
+    @GetMapping("/unban/{id}")
+    public String unbanUser(@PathVariable Long id) {
+        try {
+            Optional<User> optionalUser = userRepo.findById(id);
+            if (optionalUser.isPresent()) {
+                User user = optionalUser.get();
+                userRoleService.unbanUser(user.getEmail());
             }
             return "redirect:/users";
         } catch (Exception e) {
@@ -189,7 +204,8 @@ public class AppController {
     public String listUsers(Model model,
                             @RequestParam(name = "search", required = false) String search,
                             @RequestParam(name = "sort", required = false, defaultValue = "lastName") String sort,
-                            @RequestParam(name = "page", defaultValue = "0") int currentPage) {
+                            @RequestParam(name = "page", defaultValue = "0") int currentPage
+    ) {
         try {
             Authentication auth = SecurityContextHolder.getContext().getAuthentication();
             String userRole = userRoleService.getUserRole(auth.getName());
@@ -200,7 +216,7 @@ public class AppController {
                 boolean isAuthenticated = !auth.getName().equals("anonymousUser");
 
                 Page<User> userPage;
-                Pageable pageable = PageRequest.of(currentPage, 10);
+                Pageable pageable = PageRequest.of(currentPage, 15);
 
                 if (search != null && !search.isEmpty()) {
                     userPage = userRepo.findByFirstNameContainingOrLastNameContainingOrEmailContaining(search, search, search, pageable);
@@ -230,6 +246,8 @@ public class AppController {
 
                 model.addAttribute("currentPage", userPage.getNumber());
                 model.addAttribute("totalPages", userPage.getTotalPages());
+                model.addAttribute("registrationDateFormatter", DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm:ss"));
+
 
                 logger.info("User list page accessed");
                 return "users";
