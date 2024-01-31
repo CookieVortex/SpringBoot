@@ -513,7 +513,7 @@ button[type="submit"] {
 }
 
 .custom-delete-btn {
-    background: rgb(86, 30, 30) !important;
+    background: rgb(47, 47, 47) !important;
     border: 0 !important;
     width: 100px !important;
     height: 30px !important;
@@ -529,6 +529,41 @@ button[type="submit"] {
 .custom-delete-btn:hover {
     background: rgb(131, 19, 19) !important;
 }
+
+.custom-ban-btn {
+    background: rgb(94, 13, 13) !important;
+    border: 0 !important;
+    width: 100px !important;
+    height: 30px !important;
+    border-radius: 5px !important;
+    color: #fff !important;
+    font-size: 12px !important;
+    cursor: pointer !important;
+    transition: background .3s ease-in-out !important;
+}
+
+.custom-ban-btn:hover {
+    background: rgb(131, 19, 19) !important;
+}
+
+.custom-unban-btn {
+    background: rgb(21, 94, 13) !important;
+    border: 0 !important;
+    width: 100px !important;
+    height: 30px !important;
+    border-radius: 5px !important;
+    color: #fff !important;
+    font-size: 12px !important;
+    cursor: pointer !important;
+    transition: background .3s ease-in-out !important;
+}
+
+.custom-unban-btn:hover {
+    background: rgb(35, 152, 22) !important;
+}
+
+
+
 
 .sort-container {
     display: flex;

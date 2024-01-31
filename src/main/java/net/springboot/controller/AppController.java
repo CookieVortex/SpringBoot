@@ -78,6 +78,21 @@ public class AppController {
         }
     }
 
+    @GetMapping("/ban/{id}")
+    public String banUser(@PathVariable Long id) {
+        try {
+            Optional<User> optionalUser = userRepo.findById(id);
+            if (optionalUser.isPresent()) {
+                User user = optionalUser.get();
+                userRoleService.banUser(user.getEmail());
+            }
+            return "redirect:/users";
+        } catch (Exception e) {
+            return "error";
+        }
+    }
+
+
     @Controller
     public static class BannedController {
 
