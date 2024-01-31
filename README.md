@@ -56,7 +56,7 @@ In progress...
 
 
 ![Screenshot_1](https://github.com/CookieVortex/SpringBoot/assets/24642100/bead5b17-62aa-4da9-8fda-23d1d6e3be3f)
-![Screenshot_2](https://github.com/CookieVortex/SpringBoot/assets/24642100/00b58aa1-7e8f-4c9f-83ae-c308cf161746)
+![Screenshot_7](https://github.com/CookieVortex/SpringBoot/assets/24642100/09b8b40a-5441-4d54-86d8-dc632d09f870)
 ![Screenshot_3](https://github.com/CookieVortex/SpringBoot/assets/24642100/862b13f0-5561-4982-bc8e-f0313b2b8bed)
 ![Screenshot_4](https://github.com/CookieVortex/SpringBoot/assets/24642100/51ae109a-8eea-46ec-88ce-6af5566a6007)
 ![Screenshot_5](https://github.com/CookieVortex/SpringBoot/assets/24642100/70ae90d7-fab9-4bda-bdb0-b77997f55142)
