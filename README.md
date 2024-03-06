@@ -2,8 +2,6 @@
 
 ## Overview
 
-ProjectZomboid Database Panel is a web application designed to manage user information and provide administrative functionality.
-
 ## Functionalities
 
 ### 1. User Deletion
